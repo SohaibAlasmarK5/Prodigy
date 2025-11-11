@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prodigy - Home</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="container">
+            <div class="logo-container">
+                <img src="logo.png" alt="Prodigy Company Logo" class="logo-img">
+            </div>
+            <nav class="nav-links">
+                <a href="#home" class="active" data-en="Home" data-ar="الرئيسية">Home</a>
+                <a href="#tools" data-en="Tools" data-ar="الأدوات">Tools</a>
+                <a href="#products" data-en="Products" data-ar="المنتجات">Products</a>
+                <a href="about.html" data-en="About Us" data-ar="من نحن">About Us</a>
+            </nav>
+            <div class="nav-controls">
+                <button id="language-toggle" class="lang-btn" data-lang="ar">العربية</button>
+                <button class="menu-toggle" aria-label="Toggle navigation menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="content-section" id="home">
+        <div class="container">
+            <h2 class="main-title">Welcome to Prodigy</h2>
+            <p>Your solution for innovation and excellence.</p>
+        </div>
+    </main>
+
+    <section class="placeholder-section" id="tools">
+        <div class="container">
+            <h3>Tools Section</h3>
+        </div>
+    </section>
+    <section class="placeholder-section" id="products">
+        <div class="container">
+            <h3>Products Section</h3>
+        </div>
+    </section>
+    <section class="placeholder-section" id="about">
+        <div class="container">
+            <h3>About Us Section</h3>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="contact-info">
+                <h4>Contact Info</h4>
+                <p><i class="fas fa-envelope"></i> contact@prodigy.com</p>
+                <p><i class="fas fa-phone"></i> +123 456 7890</p>
+            </div>
+            <div class="social-media">
+                <h4>Follow Us</h4>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="container copyright">
+            &copy; <span id="current-year"></span> Prodigy. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
