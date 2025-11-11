@@ -1,0 +1,143 @@
+:root {
+    --primary-color: #d62323;
+    /* red */
+    --secondary-color: #ffffff;
+    /* white */
+    --hover-color: #fddddd;
+    --text-color: #222;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 0 20px;
+    height: 80px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo img {
+    height: 60px;
+    width: auto;
+}
+
+.menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
+
+.menu li {
+    position: relative;
+    margin: 0 15px;
+}
+
+.menu li a,
+.dropbtn {
+    color: var(--secondary-color);
+    font-size: 18px;
+    text-decoration: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 8px 12px;
+    transition: 0.3s;
+}
+
+.menu li a:hover,
+.dropbtn:hover {
+    color: black;
+}
+
+/* Dropdown */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--secondary-color);
+    min-width: 160px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 10px 16px;
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.dropdown-content a:hover {
+    background-color: #f5f5f5;
+    color: black;
+}
+
+/* Language Button */
+.language-switch button {
+    background: var(--secondary-color);
+    color: var(--primary-color);
+    border: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.language-switch button:hover {
+    background-color: #f5f5f5;
+}
+
+/* Page Content */
+main {
+    padding: 40px;
+    text-align: center;
+}
+
+.hero h1,
+.about h1 {
+    color: var(--primary-color);
+}
+
+/* Footer */
+.footer {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    text-align: center;
+    padding: 20px;
+    font-size: 0.95em;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .menu {
+        flex-direction: column;
+        display: none;
+        width: 100%;
+        background-color: var(--primary-color);
+        position: absolute;
+        top: 80px;
+        left: 0;
+    }
+
+    .menu li {
+        margin: 10px 0;
+    }
+
+    .navbar.active .menu {
+        display: flex;
+    }
+}
