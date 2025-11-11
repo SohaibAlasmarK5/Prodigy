@@ -1,4 +1,11 @@
-/* === General Setup === */
+/*
+|========================================================================
+| PRODIGY WEBSITE STYLESHEET (style.css)
+|========================================================================
+| This file contains all styles for the responsive, red-themed Prodigy site.
+*/
+
+/* === General Setup & Variables === */
 :root {
     --color-primary: #D90429;
     /* Deep Red Theme (Prodigy Red) */
@@ -15,6 +22,11 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+/* FIX: Force scrollbar to prevent layout shift when navigating between pages */
+html {
+    overflow-y: scroll;
 }
 
 body {
@@ -34,30 +46,26 @@ a {
     color: var(--color-dark);
 }
 
-/* === Navigation Bar (Header) === */
+/* === Navigation Bar (Header) - Compact and Consistent === */
 .navbar {
     background-color: var(--color-dark);
-    /* NEW: Set a fixed, smaller height for the navigation bar */
+    /* Strict 50px height for consistency across all pages */
     height: 50px;
     padding: 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    /* Ensures content doesn't overflow if it's too tall */
     overflow: hidden;
 }
 
 .navbar .container {
-    /* Set container height to match the navbar height */
     height: 100%;
-
-    /* Revert to horizontal layout */
+    /* Ensures container fills 50px height */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    /* Centers items vertically within the 50px height */
-
-    /* Reintroduce horizontal padding only */
+    /* Vertically centers content */
     padding: 0 0;
+    /* Ensures no vertical padding */
 }
 
 /* --- LOGO STYLES (Side-by-Side, Fits 50px Height) --- */
@@ -67,12 +75,13 @@ a {
     margin: 0;
     padding: 0;
     height: 100%;
+    /* Ensures logo container fills 50px height */
     width: auto;
 }
 
 .logo-img {
     width: auto;
-    /* NEW: Set max height relative to bar height (e.g., 90%) */
+    /* Ensures logo scales down to fit the bar height */
     max-height: 90%;
     height: auto;
     object-fit: contain;
@@ -87,7 +96,7 @@ a {
 .nav-links {
     display: flex;
     gap: 1rem;
-    /* Reduced gap slightly for compact look */
+    /* Reduced gap for compact look */
     align-items: center;
 }
 
@@ -108,7 +117,6 @@ a {
     display: flex;
     align-items: center;
     gap: 1rem;
-    /* Reduced margin/padding around controls for the compact bar */
     padding-right: 0.5rem;
 }
 
@@ -117,7 +125,7 @@ a {
     color: var(--color-light);
     border: none;
     padding: 0.4rem 0.8rem;
-    /* Reduced button padding */
+    /* Reduced button padding for compact bar */
     cursor: pointer;
     border-radius: 4px;
     transition: background-color 0.3s;
@@ -136,13 +144,13 @@ a {
     cursor: pointer;
 }
 
-/* Mobile Navigation Toggle (Hidden by default) */
+/* Mobile Navigation Dropdown */
 .nav-links.active {
     display: flex;
     flex-direction: column;
     position: absolute;
     top: 50px;
-    /* NEW: Drops menu exactly below the 50px bar */
+    /* Drops menu exactly below the 50px bar */
     left: 0;
     width: 100%;
     background-color: var(--color-dark);
@@ -158,7 +166,7 @@ a {
 }
 
 
-/* === Main Content === */
+/* === Main Content (Generic Sections) === */
 .content-section {
     background-color: var(--color-light);
     padding: 6rem 0;
@@ -231,6 +239,82 @@ a {
 }
 
 
+/* ================================================= */
+/* === Styles for the About Page Highlights (INLINE ICON) === */
+/* ================================================= */
+
+.about-main {
+    padding: 4rem 0 6rem;
+    background-color: var(--color-light);
+}
+
+.about-main .main-title {
+    color: var(--color-primary);
+}
+
+.intro-text {
+    font-size: 1.15rem;
+    color: var(--color-dark);
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    text-align: center;
+}
+
+/* Container for all highlight items */
+.about-highlights {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+/* 1. Highlight item displays block content */
+.highlight-item {
+    display: block;
+    margin-bottom: 2.5rem;
+}
+
+/* 2. Style the text container to center the block */
+.highlight-text {
+    flex-grow: 1;
+    max-width: 600px;
+    margin: 0 auto;
+    padding-left: 0;
+}
+
+/* --- NEW WRAPPER STYLES FOR ICON/HEADER ALIGNMENT --- */
+.heading-wrapper {
+    display: flex;
+    /* Use flex to align icon and H2 side-by-side */
+    align-items: center;
+    /* Vertically center icon and H2 text */
+    justify-content: center;
+    /* Horizontally center the entire block */
+    margin-bottom: 0.5rem;
+}
+
+/* --- UPDATED H2 STYLE --- */
+.highlight-text h2 {
+    display: block;
+    /* Removed flex from H2 itself */
+    margin-bottom: 0;
+    font-size: 1.6rem;
+    color: var(--color-dark);
+}
+
+/* --- UPDATED ICON STYLE --- */
+.icon-inline {
+    color: var(--color-primary);
+    font-size: 1.6rem;
+    margin-right: 10px;
+}
+
+.highlight-text p {
+    text-align: center;
+    font-size: 1rem;
+    color: #444;
+}
+
+
 /* === Responsiveness (Media Queries) === */
 @media (max-width: 768px) {
 
@@ -278,141 +362,29 @@ a {
     .social-media a {
         margin: 0 0.5rem;
     }
-}
 
-/* ================================================= */
-/* === New Styles for the About Page (about.html)=== */
-/* ================================================= */
-
-.about-main {
-    padding: 4rem 0 6rem;
-    background-color: var(--color-light);
-}
-
-.about-main .main-title {
-    margin-bottom: 0.5rem;
-}
-
-.intro-text {
-    font-size: 1.15rem;
-    color: var(--color-dark);
-    max-width: 800px;
-    margin: 0 auto 3rem;
-    text-align: center;
-}
-
-/* Feature Sections (Mission/History) */
-.about-feature {
-    display: flex;
-    align-items: center;
-    gap: 3rem;
-    padding: 4rem 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    text-align: left;
-}
-
-.about-feature:first-of-type {
-    border-top: none;
-}
-
-.feature-text {
-    flex: 1;
-}
-
-.feature-text h2 {
-    color: var(--color-primary);
-    font-size: 2rem;
-    margin-bottom: 1rem;
-}
-
-.feature-image {
-    flex: 1;
-    /* Placeholder style for the image area */
-    min-height: 250px;
-    background-color: #ddd;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-dark);
-    font-style: italic;
-    overflow: hidden;
-}
-
-/* Reverses the order for the History section */
-.about-feature.reversed {
-    flex-direction: row-reverse;
-}
-
-/* Team Section */
-.team-section {
-    padding: 4rem 0 0;
-    text-align: center;
-}
-
-.team-section h2 {
-    color: var(--color-dark);
-    margin-bottom: 2rem;
-}
-
-.team-members {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-}
-
-.member-card {
-    background-color: #fff;
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 280px;
-    text-align: center;
-}
-
-.member-photo {
-    width: 120px;
-    height: 120px;
-    background-color: var(--color-secondary);
-    border-radius: 50%;
-    margin: 0 auto 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-light);
-    font-size: 0.9rem;
-    font-style: italic;
-}
-
-.member-card h4 {
-    color: var(--color-primary);
-    margin-bottom: 0.25rem;
-}
-
-.member-card .role {
-    color: var(--color-dark);
-    font-size: 0.9rem;
-}
-
-
-/* === Responsiveness for About Page === */
-@media (max-width: 900px) {
-    .about-feature {
-        /* Stack image and text vertically */
-        flex-direction: column;
-        text-align: center;
-        gap: 1.5rem;
+    /* Responsive Adjustments for Highlights */
+    .intro-text {
+        font-size: 1rem;
+        margin-bottom: 2rem;
     }
 
-    /* Undo the reversal on small screens so the image is always first */
-    .about-feature.reversed {
-        flex-direction: column;
+    /* Mobile styles for inline icon and text */
+    .highlight-text {
+        padding-left: 0;
     }
 
-    .feature-image {
-        /* Ensure image placeholder scales well */
-        width: 100%;
-        min-height: 200px;
+    /* Mobile centering for the heading block */
+    .heading-wrapper {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .highlight-text h2 {
+        font-size: 1.4rem;
+    }
+
+    .icon-inline {
+        font-size: 1.4rem;
     }
 }

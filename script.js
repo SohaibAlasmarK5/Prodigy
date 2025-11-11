@@ -1,53 +1,59 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const langToggle = document.getElementById('language-toggle');
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    const body = document.body;
-
-    // --- 1. Language Translation ---
-    langToggle.addEventListener('click', () => {
-        const currentLang = langToggle.getAttribute('data-lang');
-
-        if (currentLang === 'en') {
-            // Switch to Arabic
-            body.setAttribute('dir', 'rtl');
-            langToggle.setAttribute('data-lang', 'ar');
-            langToggle.textContent = 'English';
-            // Update Navigation Links
-            navLinks.querySelectorAll('a').forEach(link => {
-                link.textContent = link.getAttribute('data-ar');
-            });
-        } else {
-            // Switch to English
-            body.setAttribute('dir', 'ltr');
-            langToggle.setAttribute('data-lang', 'en');
-            langToggle.textContent = 'العربية';
-            // Update Navigation Links
-            navLinks.querySelectorAll('a').forEach(link => {
-                link.textContent = link.getAttribute('data-en');
-            });
-        }
-    });
-
-    // --- 2. Mobile Menu Toggle ---
-    menuToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        menuToggle.querySelector('i').classList.toggle('fa-bars');
-        menuToggle.querySelector('i').classList.toggle('fa-times'); // Use X icon for close
-    });
-});
-document.addEventListener('DOMContentLoaded', () => {
-    // --- New Code for Dynamic Copyright Year ---
+    // 1. DYNAMIC COPYRIGHT YEAR (from previous steps)
     const yearSpan = document.getElementById('current-year');
     if (yearSpan) {
         yearSpan.textContent = new Date().getFullYear();
     }
-    // ------------------------------------------
 
-    const langToggle = document.getElementById('language-toggle');
+    // 2. MOBILE MENU TOGGLE LOGIC
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
-    const body = document.body;
 
-    // ... (Rest of your existing JavaScript code follows) ...
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    }
+
+    // 3. LANGUAGE TRANSLATION LOGIC (The crucial part)
+    const langToggle = document.getElementById('language-toggle');
+    const allTranslatableElements = document.querySelectorAll('[data-en], [data-ar]');
+
+    // Function to apply translation
+    function setLanguage(lang) {
+        const isArabic = (lang === 'ar');
+        document.body.dir = isArabic ? 'rtl' : 'ltr'; // Set text direction
+
+        allTranslatableElements.forEach(element => {
+            // Check for data attribute and update content
+            const translation = element.getAttribute(isArabic ? 'data-ar' : 'data-en');
+            if (translation) {
+                element.textContent = translation;
+            }
+        });
+
+        // Handle the language toggle button text
+        if (langToggle) {
+            langToggle.textContent = isArabic ? 'English' : 'العربية';
+            langToggle.setAttribute('data-lang', isArabic ? 'en' : 'ar');
+        }
+    }
+
+    // Set initial language (Defaulting to English, unless saved preference exists)
+    // You can change 'en' to 'ar' if you want Arabic to be the initial default.
+    let currentLang = 'en';
+    setLanguage(currentLang);
+
+
+    // Add click listener for the language button
+    if (langToggle) {
+        langToggle.addEventListener('click', () => {
+            const newLang = langToggle.getAttribute('data-lang'); // Gets 'ar' or 'en' from the attribute
+            setLanguage(newLang);
+        });
+    }
+
 });
+
+// NOTE: This script assumes all translatable text blocks have both a 'data-en'
+// and a 'data-ar' attribute in the HTML.
