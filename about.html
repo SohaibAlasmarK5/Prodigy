@@ -15,13 +15,24 @@
     <header class="navbar">
         <div class="container">
             <div class="logo-container">
-                <img src="logo.png" alt="Prodigy Company Logo" class="logo-img">
+                <img src="logo.png" alt="Prodigy Company Logo" class="logo-img" data-en-alt="Prodigy Company Logo"
+                    data-ar-alt="شعار شركة بروديجي">
             </div>
             <nav class="nav-links">
-                <a href="index.html" data-en="Home" data-ar="الرئيسية">Home</a>
-                <a href="#" data-en="Tools" data-ar="الأدوات">Tools</a>
-                <a href="#" data-en="Products" data-ar="المنتجات">Products</a>
-                <a href="about.html" class="active" data-en="About Us" data-ar="من نحن">About Us</a>
+                <li><a href="index.html" data-en="Home" data-ar="الرئيسية">Home</a></li>
+
+                <li class="nav-dropdown-item">
+                    <a href="index.html#tools" data-en="Technical Support" data-ar="الدعم الفني">Technical Support</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="manuals.html" data-en="User Manuals" data-ar="أدلة المستخدم">User Manuals</a></li>
+                        <li><a href="contact.html" data-en="Contact Support" data-ar="اتصل بالدعم">Contact Support</a>
+                        </li>
+                        <li><a href="faq.html" data-en="FAQ / Knowledge Base" data-ar="الأسئلة الشائعة">FAQ / Knowledge
+                                Base</a></li>
+                    </ul>
+                </li>
+                <li><a href="index.html#products" data-en="Products" data-ar="المنتجات">Products</a></li>
+                <li><a class="active" data-en="About Us" data-ar="من نحن">About Us</a></li>
             </nav>
             <div class="nav-controls">
                 <button id="language-toggle" class="lang-btn" data-lang="ar">العربية</button>

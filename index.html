@@ -15,13 +15,24 @@
     <header class="navbar">
         <div class="container">
             <div class="logo-container">
-                <img src="logo.png" alt="Prodigy Company Logo" class="logo-img">
+                <img src="logo.png" alt="Prodigy Company Logo" class="logo-img" data-en-alt="Prodigy Company Logo"
+                    data-ar-alt="شعار شركة بروديجي">
             </div>
             <nav class="nav-links">
-                <a href="#home" class="active" data-en="Home" data-ar="الرئيسية">Home</a>
-                <a href="#tools" data-en="Tools" data-ar="الأدوات">Tools</a>
-                <a href="#products" data-en="Products" data-ar="المنتجات">Products</a>
-                <a href="about.html" data-en="About Us" data-ar="من نحن">About Us</a>
+                <li><a class="active" data-en="Home" data-ar="الرئيسية">Home</a></li>
+
+                <li class="nav-dropdown-item">
+                    <a href="#tools" data-en="Technical Support" data-ar="الدعم الفني">Technical Support</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="manuals.html" data-en="User Manuals" data-ar="أدلة المستخدم">User Manuals</a></li>
+                        <li><a href="contact.html" data-en="Contact Support" data-ar="اتصل بالدعم">Contact Support</a>
+                        </li>
+                        <li><a href="faq.html" data-en="FAQ / Knowledge Base" data-ar="الأسئلة الشائعة">FAQ / Knowledge
+                                Base</a></li>
+                    </ul>
+                </li>
+                <li><a href="#products" data-en="Products" data-ar="المنتجات">Products</a></li>
+                <li><a href="about.html" data-en="About Us" data-ar="من نحن">About Us</a></li>
             </nav>
             <div class="nav-controls">
                 <button id="language-toggle" class="lang-btn" data-lang="ar">العربية</button>
@@ -34,36 +45,37 @@
 
     <main class="content-section" id="home">
         <div class="container">
-            <h2 class="main-title">Welcome to Prodigy</h2>
-            <p>Your solution for innovation and excellence.</p>
+            <h2 class="main-title" data-en="Welcome to Prodigy" data-ar="مرحبًا بك في بروديجي">Welcome to Prodigy</h2>
+            <p data-en="Your solution for innovation and excellence." data-ar="الحل الأمثل للابتكار والتميز.">Your
+                solution for innovation and excellence.</p>
         </div>
     </main>
 
     <section class="placeholder-section" id="tools">
         <div class="container">
-            <h3>Tools Section</h3>
+            <h3 data-en="Technical Support" data-ar="الدعم الفني">Technical Support</h3>
         </div>
     </section>
     <section class="placeholder-section" id="products">
         <div class="container">
-            <h3>Products Section</h3>
+            <h3 data-en="Products Section" data-ar="قسم المنتجات">Products Section</h3>
         </div>
     </section>
     <section class="placeholder-section" id="about">
         <div class="container">
-            <h3>About Us Placeholder</h3>
+            <h3 data-en="About Us Placeholder" data-ar="من نحن (مؤقت)">About Us Placeholder</h3>
         </div>
     </section>
 
     <footer class="footer">
         <div class="container footer-content">
             <div class="contact-info">
-                <h4>Contact Info</h4>
+                <h4 data-en="Contact Info" data-ar="معلومات الاتصال">Contact Info</h4>
                 <p><i class="fas fa-envelope"></i> contact@prodigy.com</p>
                 <p><i class="fas fa-phone"></i> +123 456 7890</p>
             </div>
             <div class="social-media">
-                <h4>Follow Us</h4>
+                <h4 data-en="Follow Us" data-ar="تابعنا">Follow Us</h4>
                 <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                 <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                 <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
@@ -71,7 +83,8 @@
             </div>
         </div>
         <div class="container copyright">
-            &copy; <span id="current-year"></span> Prodigy. All Rights Reserved.
+            &copy; <span id="current-year"></span> Prodigy. <span data-en="All Rights Reserved."
+                data-ar="جميع الحقوق محفوظة.">All Rights Reserved.</span>
         </div>
     </footer>
 

@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. DYNAMIC COPYRIGHT YEAR (from previous steps)
+
+    // 1. DYNAMIC COPYRIGHT YEAR
     const yearSpan = document.getElementById('current-year');
     if (yearSpan) {
         yearSpan.textContent = new Date().getFullYear();
@@ -15,45 +16,61 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. LANGUAGE TRANSLATION LOGIC (The crucial part)
+    // 3. LANGUAGE TRANSLATION LOGIC
     const langToggle = document.getElementById('language-toggle');
-    const allTranslatableElements = document.querySelectorAll('[data-en], [data-ar]');
+    // Select all elements that have a translation data attribute
+    const allTranslatableElements = document.querySelectorAll('[data-en], [data-ar], [data-en-alt], [data-ar-alt], [data-en-title], [data-ar-title], [data-en-placeholder], [data-ar-placeholder]');
 
     // Function to apply translation
     function setLanguage(lang) {
         const isArabic = (lang === 'ar');
-        document.body.dir = isArabic ? 'rtl' : 'ltr'; // Set text direction
+        // Set text direction (RTL for Arabic, LTR for English)
+        document.body.dir = isArabic ? 'rtl' : 'ltr';
+
+        const langDataAttr = isArabic ? 'data-ar' : 'data-en';
 
         allTranslatableElements.forEach(element => {
-            // Check for data attribute and update content
-            const translation = element.getAttribute(isArabic ? 'data-ar' : 'data-en');
-            if (translation) {
-                element.textContent = translation;
+            // 1. Handle text content translation
+            const textTranslation = element.getAttribute(langDataAttr);
+            if (textTranslation) {
+                element.textContent = textTranslation;
             }
+
+            // 2. Handle attribute translations (alt, title, placeholder)
+            const attributesToTranslate = ['alt', 'title', 'placeholder'];
+            attributesToTranslate.forEach(attr => {
+                // Construct the full attribute name (e.g., 'data-ar-alt')
+                const attrTranslation = element.getAttribute(langDataAttr + '-' + attr);
+                if (attrTranslation) {
+                    element.setAttribute(attr, attrTranslation);
+                }
+            });
         });
 
-        // Handle the language toggle button text
+        // 3. Handle the language toggle button text (UPDATED)
         if (langToggle) {
-            langToggle.textContent = isArabic ? 'English' : 'العربية';
+            // Display 'EN' when current language is Arabic, and 'AR' when current language is English
+            langToggle.textContent = isArabic ? 'EN' : 'AR';
+            // Set the data-lang attribute to the language it will switch *to*
             langToggle.setAttribute('data-lang', isArabic ? 'en' : 'ar');
         }
+
+        // Save language preference to local storage
+        localStorage.setItem('prodigyLang', lang);
     }
 
-    // Set initial language (Defaulting to English, unless saved preference exists)
-    // You can change 'en' to 'ar' if you want Arabic to be the initial default.
-    let currentLang = 'en';
+    // Set initial language based on local storage or default to English
+    let currentLang = localStorage.getItem('prodigyLang') || 'en';
     setLanguage(currentLang);
 
 
     // Add click listener for the language button
     if (langToggle) {
         langToggle.addEventListener('click', () => {
-            const newLang = langToggle.getAttribute('data-lang'); // Gets 'ar' or 'en' from the attribute
+            // Get the *new* language from the data-lang attribute
+            const newLang = langToggle.getAttribute('data-lang');
             setLanguage(newLang);
         });
     }
 
 });
-
-// NOTE: This script assumes all translatable text blocks have both a 'data-en'
-// and a 'data-ar' attribute in the HTML.
