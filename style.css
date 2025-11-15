@@ -122,6 +122,11 @@ a {
     border-bottom: 2px solid var(--color-dark);
 }
 
+.nav-links li a.active-item {
+    color: var(--color-light);
+    border-bottom: 2px solid var(--color-dark);
+}
+
 /* === DROPDOWN MENU STYLING (The core of the fix) === */
 .nav-dropdown-item {
     /* Anchors the dropdown menu relative to this list item */
@@ -487,5 +492,26 @@ a {
 
     .icon-inline {
         font-size: 1.4rem;
+    }
+
+    /* --- FIX FOR FAN SELECTOR BUTTON STYLE --- */
+    .selector-controls button {
+        /* The button was black because a background color wasn't fully defined or inherited black. */
+        background-color: var(--accent);
+        /* Sets the correct red color */
+
+        /* THIS IS THE CRITICAL FIX for the invisible text */
+        color: white;
+
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: var(--control-radius);
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .selector-controls button:hover {
+        background-color: #2B2D42;
+        /* Darker hover effect */
     }
 }

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-en-title="Prodigy - Fan Selector Tool" data-ar-title="بروديجي - أداة اختيار المروحة">Prodigy - Fan
+        Selector Tool</title>
+
+    <link rel="icon" type="image/x-icon" href="../Images/favicon.ico">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="tools.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+    <header class="navbar fixed-top">
+        <div class="container">
+            <div class="logo-container">
+                <img src="../Images/logo.png" alt="Prodigy Company Logo" class="logo-img"
+                    data-en-alt="Prodigy Company Logo" data-ar-alt="شعار شركة بروديجي">
+            </div>
+            <nav class="nav-links">
+                <li><a href="../index.html" data-en="Home" data-ar="الرئيسية">Home</a></li>
+                <li class="nav-dropdown-item">
+                    <a class="active" data-en="Technical Support" data-ar="الدعم الفني">Technical Support</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="FanSelector.html" data-en="Fan Selector Tool" data-ar="أداة تحديد المروحة">Fan
+                                Selector Tool</a></li>
+                        <li><a href="../contact.html" data-en="Contact Support" data-ar="اتصل بالدعم">Contact
+                                Support</a>
+                        </li>
+                        <li><a href="../faq.html" data-en="FAQ / Knowledge Base" data-ar="الأسئلة الشائعة">FAQ /
+                                Knowledge
+                                Base</a></li>
+                    </ul>
+                </li>
+                <li><a href="../index.html#products" data-en="Products" data-ar="المنتجات">Products</a></li>
+                <li><a href="../about.html" data-en="About Us" data-ar="من نحن">About Us</a></li>
+            </nav>
+            <div class="nav-controls">
+                <button id="language-toggle" class="lang-btn" data-lang="ar">العربية</button>
+                <button class="menu-toggle" aria-label="Toggle navigation menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="content-section">
+
+        <div class="fan-selector-container">
+
+            <div class="fan-selector-left">
+
+                <h1 class="tool-title">PRODIGY Fan Selector</h1>
+
+                <div class="input-grid">
+
+                    <div class="input-row">
+                        <label>Model</label>
+                        <select id="modeSelect">
+                            <option value="HS">High Speed (HS)</option>
+                            <option value="MS">Medium Speed (MS)</option>
+                        </select>
+                    </div>
+
+                    <div class="input-row">
+                        <label>Airflow (CFM)</label>
+                        <input type="number" id="cfmInput" placeholder="Enter CFM">
+                    </div>
+
+                    <div class="result" id="output"></div>
+                </div>
+
+                <div class="chart-wrapper">
+                    <canvas id="fanChart"></canvas>
+                </div>
+
+            </div>
+
+            <div class="fan-selector-right">
+                <img id="fanImage" src="../Images/HSFan.png" alt="Fan Image">
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="contact-info">
+                <h4 data-en="Contact Info" data-ar="معلومات الاتصال">Contact Info</h4>
+                <p><i class="fas fa-envelope"></i> contact@prodigy.com</p>
+                <p><i class="fas fa-phone"></i> +123 456 7890</p>
+            </div>
+            <div class="social-media">
+                <h4 data-en="Follow Us" data-ar="تابعنا">Follow Us</h4>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="container copyright">
+            &copy; <span id="current-year"></span> Prodigy. <span data-en="All Rights Reserved."
+                data-ar="جميع الحقوق محفوظة.">All Rights Reserved.</span>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="../TechSupportTools/FanScript.js"></script>
+
+</body>
+
+</html>
