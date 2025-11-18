@@ -1,3 +1,31 @@
+const CFM_TO_M3H = 1.699;
+let currentLang = 'en';
+
+
+const TRANSLATIONS = {
+    en: {
+        X_AXIS: "Airflow (m³/h)",
+        Y_AXIS: "Static Pressure (Pa)",
+        WATERMARK: "Fan Performance Curves",
+        POINT_LABEL: "Selected Point",
+        RESULT_NO_FAN: (cfm, mode) => `No suitable fan for ${cfm.toFixed(0)} CFM in the ${mode} series.`,
+        RESULT_PREFIX: (m3h, pressure) => `Airflow = ${m3h.toFixed(0)} m³/h → Pressure = ${pressure.toFixed(0)} Pa<br>`,
+        RESULT_FAN: "Recommended Fan:",
+        INITIAL_OUTPUT: "Enter CFM to see fan performance"
+    },
+    ar: {
+        X_AXIS: "تدفق الهواء (م³/س)",
+        Y_AXIS: "الضغط الساكن (باسكال)",
+        WATERMARK: "منحنيات أداء المروحة",
+        POINT_LABEL: "النقطة المحددة",
+        RESULT_NO_FAN: (cfm, mode) => `لا توجد مروحة مناسبة لـ ${cfm.toFixed(0)} CFM في سلسلة ${mode}.`,
+        RESULT_PREFIX: (m3h, pressure) => `التدفق = ${m3h.toFixed(0)} م³/س ← الضغط = ${pressure.toFixed(0)} باسكال<br>`,
+        RESULT_FAN: "المروحة الموصى بها:",
+        INITIAL_OUTPUT: "أدخل CFM لرؤية أداء المروحة"
+    }
+};
+
+// --- FAN DATASETS (as provided by user) ---
 const FAN_DATA = {
     HS: [
         { name: "HS-100P", minCFM: 1, maxCFM: 100, minPa: 30, data: [[0, 156], [50, 135], [100, 98], [125, 90], [150, 69], [175, 40], [198, 0]] },
@@ -29,25 +57,43 @@ function interpolate(data, x) {
 const ctx = document.getElementById("fanChart").getContext("2d");
 let chart;
 
+const watermarkPlugin = {
+    id: 'watermark',
+    beforeDraw: (chart) => {
+        const { width, height, ctx } = chart;
+        ctx.save();
+        ctx.font = "bold 80px Arial";
+        ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        // Use translation object for text
+        ctx.fillText(TRANSLATIONS[currentLang].WATERMARK, width / 2, height / 2);
+        ctx.restore();
+    }
+};
+
 function buildChart(mode) {
     const fans = FAN_DATA[mode];
-
-    const colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd"];
+    const colors = ["#c81b1b", "#ff7f0e", "#2ca02c", "#1f77b4", "#9467bd"];
 
     const datasets = fans.map((fan, idx) => ({
         label: fan.name,
         data: fan.data.map(([x, y]) => ({ x, y })),
         borderColor: colors[idx % colors.length],
         backgroundColor: 'transparent',
+        borderWidth: 3,
         tension: 0.3,
         pointRadius: 0
     }));
 
     const pointDataset = {
-        label: "Selected",
+        // Use translation object for label
+        label: TRANSLATIONS[currentLang].POINT_LABEL,
         data: [],
         pointBackgroundColor: "black",
         pointRadius: 8,
+        pointStyle: 'crossRot',
+        borderWidth: 3,
         type: "scatter",
         showLine: false
     };
@@ -59,11 +105,23 @@ function buildChart(mode) {
         data: { datasets: [...datasets, pointDataset] },
         options: {
             responsive: true,
+            maintainAspectRatio: false,
             scales: {
-                x: { type: "linear", title: { display: true, text: "Airflow (m³/h)" } },
-                y: { title: { display: true, text: "Pressure (Pa)" } }
+                x: {
+                    type: "linear",
+                    title: { display: true, text: TRANSLATIONS[currentLang].X_AXIS }
+                },
+                y: {
+                    title: { display: true, text: TRANSLATIONS[currentLang].Y_AXIS },
+                    min: 0
+                }
+            },
+            plugins: {
+                legend: { position: 'bottom' },
+                title: { display: false }
             }
-        }
+        },
+        plugins: [watermarkPlugin]
     });
 
     return pointDataset;
@@ -71,16 +129,37 @@ function buildChart(mode) {
 
 let currentPointDataset = buildChart("HS");
 
+
 document.getElementById("cfmInput").addEventListener("input", updateResult);
+
+document.getElementById("modeSelect").addEventListener("change", function () {
+    const mode = this.value;
+
+    document.getElementById("fanImage").src =
+        mode === "HS" ? "../Images/HSFan.png" : "../Images/MSFan.png";
+
+    currentPointDataset = buildChart(mode);
+
+    updateResult();
+});
+
+
 
 function updateResult() {
     const mode = document.getElementById("modeSelect").value;
     const fans = FAN_DATA[mode];
 
     const cfm = parseFloat(document.getElementById("cfmInput").value);
-    if (isNaN(cfm)) return;
+    const output = document.getElementById("output");
 
-    const m3h = cfm * 1.699;
+    if (isNaN(cfm) || cfm <= 0) {
+        output.innerHTML = TRANSLATIONS[currentLang].INITIAL_OUTPUT;
+        currentPointDataset.data = [];
+        chart.update();
+        return;
+    }
+
+    const m3h = cfm * CFM_TO_M3H;
 
     let selectedFan = null;
     let pressure = null;
@@ -96,28 +175,31 @@ function updateResult() {
         }
     }
 
-    const output = document.getElementById("output");
     if (selectedFan) {
         output.innerHTML =
-            `Airflow = ${m3h.toFixed(1)} m³/h → Pressure = ${pressure.toFixed(1)} Pa<br>` +
-            `Recommended Fan: <b>${selectedFan.name}</b>`;
+            TRANSLATIONS[currentLang].RESULT_PREFIX(m3h, pressure) +
+            `${TRANSLATIONS[currentLang].RESULT_FAN} <b>${selectedFan.name}</b>`;
 
         currentPointDataset.data = [{ x: m3h, y: pressure }];
     } else {
-        output.innerHTML = `No suitable fan for ${cfm} CFM`;
+        output.innerHTML = TRANSLATIONS[currentLang].RESULT_NO_FAN(cfm, mode);
         currentPointDataset.data = [];
     }
 
     chart.update();
 }
 
-document.getElementById("modeSelect").addEventListener("change", function () {
-    const mode = this.value;
 
-    document.getElementById("fanImage").src =
-        mode === "HS" ? "../Images/HSFan.png" : "../Images/MSFan.png";
+document.addEventListener("DOMContentLoaded", function () {
+    currentPointDataset = buildChart(document.getElementById("modeSelect").value);
 
-    currentPointDataset = buildChart(mode);
+    function applyPlaceholders(lang) {
+        const input = document.getElementById("cfmInput");
+        if (input) {
+            const placeholderKey = lang === 'ar' ? 'data-ar-placeholder' : 'data-en-placeholder';
+            input.placeholder = input.getAttribute(placeholderKey) || input.placeholder;
+        }
+    }
 
-    updateResult();
+    applyPlaceholders(currentLang);
 });

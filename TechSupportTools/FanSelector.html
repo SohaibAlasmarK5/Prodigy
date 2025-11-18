@@ -54,34 +54,39 @@
     <main class="content-section">
 
         <div class="fan-selector-container">
+
+            <h1 class="tool-title" data-en="PRODIGY Fan Selector" data-ar="PRODIGY أداة اختيار المروحة">PRODIGY Fan
+                Selector</h1>
+
             <div class="fan-selector-image-wrapper">
                 <img id="fanImage" src="../Images/HSFan.png" alt="Fan Image">
             </div>
 
-            <div class="fan-selector-left">
+            <div class="input-grid">
 
-                <div class="input-grid">
-
-                    <div class="input-row">
-                        <label>Model</label>
-                        <select id="modeSelect">
-                            <option value="HS">High Speed (HS)</option>
-                            <option value="MS">Medium Speed (MS)</option>
-                        </select>
-                    </div>
-
-                    <div class="input-row">
-                        <label>Airflow (CFM)</label>
-                        <input type="number" id="cfmInput" placeholder="Enter CFM">
-                    </div>
-
-                    <div class="result" id="output"></div>
+                <div class="input-row">
+                    <label data-en="Model" data-ar="النموذج">Model</label>
+                    <select id="modeSelect">
+                        <option value="HS" data-en="High Speed (HS)" data-ar="سرعة عالية (HS)">High Speed (HS)</option>
+                        <option value="MS" data-en="Medium Speed (MS)" data-ar="سرعة متوسطة (MS)">Medium Speed (MS)
+                        </option>
+                    </select>
                 </div>
 
-                <div class="chart-wrapper">
-                    <canvas id="fanChart"></canvas>
+                <div class="input-row">
+                    <label data-en="Airflow (CFM)" data-ar="التدفق (CFM)">Airflow (CFM)</label>
+                    <input type="number" id="cfmInput" placeholder="Enter CFM" data-en-placeholder="Enter CFM"
+                        data-ar-placeholder="أدخل CFM">
                 </div>
 
+                <div class="result" id="output" data-en="Enter CFM to see fan performance"
+                    data-ar="أدخل CFM لرؤية أداء المروحة">
+                    Enter CFM to see fan performance
+                </div>
+            </div>
+
+            <div class="chart-wrapper">
+                <canvas id="fanChart"></canvas>
             </div>
 
         </div>
