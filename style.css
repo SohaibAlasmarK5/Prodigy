@@ -360,6 +360,30 @@ a {
     color: #444;
 }
 
+.footer .social-media a {
+    transition: color 0.3s;
+}
+
+.footer .social-media a.facebook:hover {
+    color: #1877F2;
+}
+
+.footer .social-media a.instagram:hover {
+    color: #E4405F;
+}
+
+.footer .social-media a.twitter:hover {
+    color: #1DA1F2;
+}
+
+.footer .social-media a.linkedin:hover {
+    color: #0A66C2;
+}
+
+.footer .social-media a.youtube:hover {
+    color: #FF0000;
+}
+
 /* Responsive/mobile */
 @media (max-width: 768px) {
     .navbar {
