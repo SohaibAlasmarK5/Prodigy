@@ -4,19 +4,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prodigy - ESP Calculator</title>
+  <title data-en-title="Prodigy - ESP Calculator" data-ar-title="بروديجي - ESP حاسبة">Prodigy - ESP Calculator</title>
   <link rel="icon" type="image/x-icon" href="../Images/favicon.ico">
   <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
   <style>
-    /* =================== Scoped ESP page styles =================== */
     body.esp-page {
       --bg: #ffffff;
       --card: #F3F4F6;
-      --muted: #6b7280;
-      --text: #c81b1b;
-      --accent: #c81b1b;
+      --text: var(--color-primary);
+      --accent: var(--color-primary);
       --border: #e6eef3;
       --control-radius: 8px;
       --font: sans-serif;
@@ -28,15 +25,19 @@
 
     body.esp-page input,
     body.esp-page select,
-    body.esp-page button,
     body.esp-page table,
     body.esp-page label {
       font-size: 16px;
+      color: var(--text);
     }
 
     body.esp-page .page {
       max-width: 820px;
       margin: 0 auto;
+    }
+
+    .title-red {
+      color: var(--color-primary);
     }
 
     body.esp-page header h1 {
@@ -69,7 +70,6 @@
     body.esp-page label {
       font-weight: 700;
       font-size: 17px;
-      color: var(--text);
     }
 
     body.esp-page input[type="number"],
@@ -81,7 +81,6 @@
       border: 1px solid var(--border);
       font-size: 15px;
       background: #fff;
-      color: var(--text);
     }
 
     body.esp-page input[readonly] {
@@ -95,12 +94,7 @@
       font-size: 14px;
     }
 
-    body.esp-page .inline-2 {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-
+    body.esp-page .inline-2,
     body.esp-page .inline-3 {
       display: flex;
       gap: 10px;
@@ -113,7 +107,7 @@
 
     body.esp-page .note {
       font-size: 13px;
-      color: var(--muted);
+      color: #6b7280;
       margin-top: 6px;
       margin-bottom: 0;
     }
@@ -152,6 +146,7 @@
     body.esp-page .formula {
       font-weight: 700;
       margin-bottom: 8px;
+      color: var(--color-primary);
     }
 
     body.esp-page .actions {
@@ -219,23 +214,19 @@
 </head>
 
 <body class="esp-page">
-
   <header class="navbar fixed-top">
     <div class="container">
-      <div class="logo-container">
-        <img src="../Images/logo.png" alt="Prodigy Company Logo" class="logo-img">
-      </div>
+      <div class="logo-container"><img src="../Images/logo.png" alt="Prodigy Company Logo" class="logo-img"></div>
       <nav class="nav-links">
         <li><a data-en="Home" href="../index.html" data-ar="الرئيسية">Home</a></li>
         <li class="nav-dropdown-item">
           <a data-en="Technical Support" data-ar="الدعم الفني">Technical Support</a>
           <ul class="dropdown-menu">
-            <li><a href="FanSelector.html" data-en="Fan Selector Tool" data-ar="أداة تحديد المروحة">Fan
-                Selector Tool</a></li>
-            <li><a class="active-item" data-en="ESP Calculator" data-ar="ESP حاسبة">ESP Calculator</a>
+            <li><a href="FanSelector.html" data-en="Fan Selector Tool" data-ar="أداة تحديد المروحة">Fan Selector
+                Tool</a></li>
+            <li><a class="active-item" data-en="ESP Calculator" data-ar="ESP حاسبة">ESP Calculator</a></li>
+            <li><a href="faq.html" data-en="FAQ / Knowledge Base" data-ar="الأسئلة الشائعة">FAQ / Knowledge Base</a>
             </li>
-            <li><a href="faq.html" data-en="FAQ / Knowledge Base" data-ar="الأسئلة الشائعة">FAQ / Knowledge
-                Base</a></li>
           </ul>
         </li>
         <li><a href="#products" data-en="Products" data-ar="المنتجات">Products</a></li>
@@ -243,100 +234,90 @@
       </nav>
       <div class="nav-controls">
         <button id="language-toggle" class="lang-btn" data-lang="ar">العربية</button>
-        <button class="menu-toggle" aria-label="Toggle navigation menu">
-          <i class="fas fa-bars"></i>
-        </button>
+        <button class="menu-toggle" aria-label="Toggle navigation menu"><i class="fas fa-bars"></i></button>
       </div>
     </div>
   </header>
-
   <main class="content-section" id="home">
-
     <div class="page">
-      <h1 class="title-red">PRODIGY ESP Calculator</h1>
-
+      <h1 class="title-red" data-en="PRODIGY ESP Calculator" data-ar="حاسبة ESP بروديجي">PRODIGY ESP Calculator</h1>
       <div class="card">
         <div class="form-row">
-          <label for="ductType">Duct type</label>
+          <label for="ductType" data-en="Duct type" data-ar="نوع القناة">Duct type</label>
           <select id="ductType">
             <option value="PI">Pre-Insulated Duct (PI)</option>
             <option value="GI">Galvanized Iron Duct (GI)</option>
             <option value="flex">Flexible Duct</option>
           </select>
         </div>
-
         <div class="form-row" id="rowFlexQual" style="display:none;">
-          <label for="flexQual">Flexible install quality</label>
+          <label for="flexQual" data-en="Flexible install quality" data-ar="جودة تركيب القناة المرنة">Flexible install
+            quality</label>
           <select id="flexQual">
             <option value="1.25">Pulled tight (good) — ×1.25</option>
             <option value="2">Typical — ×2.0</option>
             <option value="3.5">Loose — ×3.5</option>
           </select>
         </div>
-
         <div class="form-row">
-          <label for="ductShape">Duct shape</label>
+          <label for="ductShape" data-en="Duct shape" data-ar="شكل القناة">Duct shape</label>
           <select id="ductShape">
             <option value="round">Round</option>
             <option value="rect">Rectangular</option>
           </select>
         </div>
-
         <div class="form-row" id="rowRoundSize">
-          <label for="diaMm">Duct Diameter (mm)</label>
-          <input type="number" id="diaMm" min="1" step="1" placeholder="e.g. 150">
+          <label for="diaMm" data-en="Duct Diameter (mm)" data-ar="قطر القناة (مم)">Duct Diameter (mm)</label>
+          <input type="number" id="diaMm" min="1" step="1" placeholder="e.g. 150" data-en-placeholder="e.g. 150"
+            data-ar-placeholder="مثال: 150">
         </div>
-
         <div class="form-row" id="rowRectSize" style="display:none;">
-          <label>Rect size (mm)</label>
+          <label data-en="Rect size (mm)" data-ar="أبعاد القناة المستطيلة (مم)">Rect size (mm)</label>
           <div style="display:flex;gap:8px;">
-            <input type="number" id="wMm" placeholder="Width" min="1" step="1">
-            <input type="number" id="hMm" placeholder="Height" min="1" step="1">
+            <input type="number" id="wMm" placeholder="Width" min="1" step="1" data-en-placeholder="Width"
+              data-ar-placeholder="العرض">
+            <input type="number" id="hMm" placeholder="Height" min="1" step="1" data-en-placeholder="Height"
+              data-ar-placeholder="الارتفاع">
           </div>
         </div>
-
         <div class="form-row">
-          <label for="ductLen">Duct length (m)</label>
+          <label for="ductLen" data-en="Duct length (m)" data-ar="طول القناة (م)">Duct length (m)</label>
           <input type="number" id="ductLen" min="0" step="0.1">
         </div>
-
         <div class="form-row">
-          <label for="flowVal">Airflow</label>
+          <label for="flowVal" data-en="Airflow" data-ar="معدل الهواء">Airflow</label>
           <div class="inline-2" style="width:100%; align-items:center;">
-            <input type="number" id="flowVal" placeholder="e.g. 1200" min="0" step="0.01">
+            <input type="number" id="flowVal" placeholder="e.g. 1200" min="0" step="0.01"
+              data-en-placeholder="e.g. 1200" data-ar-placeholder="مثال: 1200">
             <select id="flowUnit" class="small-unit">
               <option value="cfm">CFM</option>
               <option value="m3h">m³/h</option>
             </select>
           </div>
         </div>
-
         <div class="form-row">
-          <label for="paPerM">Friction loss (Pa/m)</label>
+          <label for="paPerM" data-en="Friction loss (Pa/m)" data-ar="خسارة الاحتكاك (Pa/م)">Friction loss
+            (Pa/m)</label>
           <input type="number" id="paPerM" readonly>
         </div>
-
         <div class="form-row" style="align-items:start;">
-          <label>Derived</label>
+          <label data-en="Derived" data-ar="المشتقة">Derived</label>
           <div style="display:flex;gap:10px;">
             <div style="flex:1">
-              <label>Area (m²)</label>
+              <label data-en="Area (m²)" data-ar="المساحة (م²)">Area (m²)</label>
               <input type="text" id="areaM2" readonly>
             </div>
             <div style="flex:1">
-              <label>Velocity (m/s)</label>
+              <label data-en="Velocity (m/s)" data-ar="السرعة (م/ث)">Velocity (m/s)</label>
               <input type="text" id="velMs" readonly>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- Add-ons section -->
       <div class="card addons">
-        <h3 class="section-title">Add-ons (optional)</h3>
-        <p class="note">Check the box to include the losses.</p>
-
-        <!-- 90° Elbows -->
+        <h3 class="title-red" data-en="Add-ons (optional)" data-ar="الملحقات (اختياري)">Add-ons (optional)</h3>
+        <p class="note" data-en="Check the box to include the losses." data-ar="حدد المربع لتضمين الخسائر.">Check the
+          box to include the losses.</p>
         <div class="row-addon">
           <label><input type="checkbox" id="useElbow90"> 90° Elbows</label>
           <select id="elbow90Type">
@@ -346,8 +327,6 @@
           <input type="number" id="elbow90Qty" placeholder="Qty" min="0">
           <div class="k-val" id="elbow90PaPer">Pa/Elbow</div>
         </div>
-
-        <!-- 45° Elbows -->
         <div class="row-addon">
           <label><input type="checkbox" id="useElbow45"> 45° Elbows</label>
           <select id="elbow45Type">
@@ -357,7 +336,6 @@
           <input type="number" id="elbow45Qty" placeholder="Qty" min="0">
           <div class="k-val" id="elbow45PaPer">Pa/Elbow</div>
         </div>
-
         <div class="row-addon">
           <label><input type="checkbox" id="useFilter"> Filter</label>
           <select id="filterSelect">
@@ -367,48 +345,43 @@
           </select>
           <input type="number" id="filterCustom" placeholder="Custom Pa">
         </div>
-
         <div class="row-addon">
           <label><input type="checkbox" id="useDamper"> Damper</label>
           <input type="number" id="damperPa" placeholder="Pa">
         </div>
-
         <div class="row-addon">
           <label><input type="checkbox" id="useOther"> Other Losses</label>
           <input type="number" id="otherPa" placeholder="Pa">
         </div>
       </div>
-
       <div class="card">
-        <div class="formula">ESP total = Friction loss × length + ∑Elbow loss + Filter + Damper + Other</div>
+        <div class="formula" data-en="ESP total = Friction loss × length + ∑Elbow loss + Filter + Damper + Other"
+          data-ar="ESP الكلي = خسارة الاحتكاك × الطول + خسائر المرفاع + الفلتر + المخمد + أخرى">ESP total = Friction
+          loss × length + ∑Elbow loss + Filter + Damper + Other</div>
         <div class="actions">
-          <button class="btn" id="calcBtn">Calculate ESP</button>
-          <button class="btn secondary" id="resetBtn">Reset</button>
+          <button class="btn" id="calcBtn" data-en="Calculate ESP" data-ar="احسب ESP">Calculate ESP</button>
+          <button class="btn secondary" id="resetBtn" data-en="Reset" data-ar="إعادة تعيين">Reset</button>
         </div>
-
         <div class="result" id="espResult">ESP = 0.0 Pa</div>
-
         <table>
           <thead>
             <tr>
-              <th>Component</th>
-              <th>Details</th>
-              <th>Loss (Pa)</th>
+              <th data-en="Component" data-ar="المكون">Component</th>
+              <th data-en="Details" data-ar="التفاصيل">Details</th>
+              <th data-en="Loss (Pa)" data-ar="الخسارة (Pa)">Loss (Pa)</th>
             </tr>
           </thead>
           <tbody id="breakdownBody"></tbody>
           <tfoot>
             <tr>
-              <td colspan="2">Total ESP</td>
+              <td colspan="2" data-en="Total ESP" data-ar="إجمالي ESP">Total ESP</td>
               <td id="breakdownTotal">0.0</td>
             </tr>
           </tfoot>
         </table>
       </div>
-
     </div>
   </main>
-
   <footer class="footer">
     <div class="container footer-content">
       <div class="contact-info">
@@ -424,145 +397,17 @@
         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
       </div>
     </div>
-    <div class="container copyright">
-      &copy; <span id="current-year"></span> Prodigy. <span data-en="All Rights Reserved."
-        data-ar="جميع الحقوق محفوظة.">All Rights Reserved.</span>
-    </div>
+    <div class="container copyright">&copy; <span id="current-year"></span> Prodigy. <span
+        data-en="All Rights Reserved." data-ar="جميع الحقوق محفوظة.">All Rights Reserved.</span></div>
   </footer>
-
   <script src="../script.js"></script>
-
-
   <script>
-    // ---------------------- Data -----------------------
-    const frictionTable = [
-      { D: 100, vals: [0.730, 1.507, 2.537, 3.813, 5.332, 7.092, 9.091, 11.327, 13.799] },
-      { D: 150, vals: [0.436, 0.904, 1.525, 2.295, 3.213, 4.277, 5.486, 6.838, 8.335] },
-      { D: 200, vals: [0.304, 0.631, 1.066, 1.606, 2.250, 2.997, 3.845, 4.794, 5.845] },
-      { D: 250, vals: [0.230, 0.478, 0.809, 1.220, 1.709, 2.277, 2.923, 3.646, 4.445] },
-      { D: 300, vals: [0.183, 0.382, 0.646, 0.975, 1.367, 1.822, 2.339, 2.918, 3.558] },
-      { D: 350, vals: [0.151, 0.316, 0.535, 0.807, 1.132, 1.509, 1.938, 2.418, 2.949] },
-      { D: 400, vals: [0.128, 0.268, 0.454, 0.686, 0.962, 1.283, 1.648, 2.056, 2.508] },
-      { D: 450, vals: [0.111, 0.232, 0.393, 0.594, 0.834, 1.112, 1.428, 1.783, 2.175] },
-      { D: 500, vals: [0.097, 0.204, 0.346, 0.523, 0.734, 0.979, 1.257, 1.569, 1.915] },
-    ];
-    const velocities = [2, 3, 4, 5, 6, 7, 8, 9, 10];
-    const Kvalues = {
-      GI_PI: { '90_short': 1.0, '90_long': 0.4, '45_short': 0.9, '45_long': 0.4 },
-      flex: { '90_short': 1.3, '90_long': 0.6, '45_short': 1.1, '45_long': 0.5 }
-    };
-
-    const E = {
-      ductType: document.getElementById('ductType'),
-      flexQual: document.getElementById('flexQual'),
-      ductShape: document.getElementById('ductShape'),
-      diaMm: document.getElementById('diaMm'),
-      wMm: document.getElementById('wMm'),
-      hMm: document.getElementById('hMm'),
-      ductLen: document.getElementById('ductLen'),
-      flowVal: document.getElementById('flowVal'),
-      flowUnit: document.getElementById('flowUnit'),
-      paPerM: document.getElementById('paPerM'),
-      areaM2: document.getElementById('areaM2'),
-      velMs: document.getElementById('velMs'),
-      elbow90Type: document.getElementById('elbow90Type'),
-      elbow90Qty: document.getElementById('elbow90Qty'),
-      elbow90PaPer: document.getElementById('elbow90PaPer'),
-      elbow45Type: document.getElementById('elbow45Type'),
-      elbow45Qty: document.getElementById('elbow45Qty'),
-      elbow45PaPer: document.getElementById('elbow45PaPer'),
-      useElbow90: document.getElementById('useElbow90'),
-      useElbow45: document.getElementById('useElbow45'),
-      useFilter: document.getElementById('useFilter'),
-      filterSelect: document.getElementById('filterSelect'),
-      filterCustom: document.getElementById('filterCustom'),
-      useDamper: document.getElementById('useDamper'),
-      damperPa: document.getElementById('damperPa'),
-      useOther: document.getElementById('useOther'),
-      otherPa: document.getElementById('otherPa'),
-      calcBtn: document.getElementById('calcBtn'),
-      resetBtn: document.getElementById('resetBtn'),
-      espResult: document.getElementById('espResult'),
-      breakdownBody: document.getElementById('breakdownBody'),
-      breakdownTotal: document.getElementById('breakdownTotal'),
-      rowRoundSize: document.getElementById('rowRoundSize'),
-      rowRectSize: document.getElementById('rowRectSize'),
-      rowFlexQual: document.getElementById('rowFlexQual')
-    };
-
-    // ---------------------- Functions -----------------------
-    function toM3s(value, unit) { const v = parseFloat(value) || 0; if (unit === 'm3h') return v / 3600; if (unit === 'cfm') return v * 0.00047194745; return v; }
-    function areaFromShape() { if (E.ductShape.value === 'round') { const d = parseFloat(E.diaMm.value) || 0; return d > 0 ? Math.PI * (d / 1000 / 2) ** 2 : 0; } else { const w = parseFloat(E.wMm.value) || 0; const h = parseFloat(E.hMm.value) || 0; return (w > 0 && h > 0) ? (w / 1000) * (h / 1000) : 0; } }
-    function hydraulicDiameter() { if (E.ductShape.value === 'round') return parseFloat(E.diaMm.value) || 0; const w = parseFloat(E.wMm.value) || 0; const h = parseFloat(E.hMm.value) || 0; return (2 * w * h) / (w + h); }
-    function velocity(Q, A) { return A > 0 ? Q / A : 0; }
-    function interpFriction(D, V) { let low = null, high = null; for (let i = 0; i < frictionTable.length; i++) { if (frictionTable[i].D === D) return frictionTable[i].vals[Math.min(Math.max(Math.round(V) - 2, 0), 8)]; if (frictionTable[i].D < D) low = frictionTable[i]; else if (frictionTable[i].D > D && !high) high = frictionTable[i]; } if (!low) low = frictionTable[0]; if (!high) high = frictionTable[frictionTable.length - 1]; const vals = []; for (let j = 0; j < velocities.length; j++) { vals[j] = low.vals[j] + (high.vals[j] - low.vals[j]) * (D - low.D) / (high.D - low.D); } const idx = Math.min(Math.max(Math.round(V) - 2, 0), 8); return vals[idx]; }
-
-    // ------------------ Updated getElbowK ------------------
-    function getElbowK(angle, type, ductType) {
-      let key = type === 'without_vanes' ? 'short' : 'long';
-      if (ductType === 'flex') return Kvalues.flex[`${angle}_${key}`] || 0;
-      return Kvalues.GI_PI[`${angle}_${key}`] || 0;
-    }
-
-    function updateDerivedAndFriction() {
-      const Qm3s = toM3s(E.flowVal.value, E.flowUnit.value);
-      const A = areaFromShape();
-      const V = velocity(Qm3s, A);
-      E.areaM2.value = A ? A.toFixed(4) : '';
-      E.velMs.value = V ? V.toFixed(2) : '';
-      const Dh = hydraulicDiameter();
-      let paPerM = interpFriction(Dh, V);
-
-      if (E.ductType.value === 'flex') {
-        const qualFactor = parseFloat(E.flexQual.value) || 2;
-        paPerM *= qualFactor;
-      }
-
-      E.paPerM.value = paPerM ? paPerM.toFixed(2) : '0';
-
-      const ductTypeKey = E.ductType.value === 'PI' || E.ductType.value === 'GI' ? 'GI_PI' : 'flex';
-      const k90 = getElbowK('90', E.elbow90Type.value, ductTypeKey);
-      const pa90 = k90 * 0.5 * 1.2 * V * V;
-      E.elbow90PaPer.textContent = pa90.toFixed(1);
-      const k45 = getElbowK('45', E.elbow45Type.value, ductTypeKey);
-      const pa45 = k45 * 0.5 * 1.2 * V * V;
-      E.elbow45PaPer.textContent = pa45.toFixed(1);
-    }
-
-    // ------------------ Calculate ESP ------------------
-    function calculateESP() {
-      updateDerivedAndFriction();
-      const L = parseFloat(E.ductLen.value) || 0;
-      const friction = parseFloat(E.paPerM.value) || 0;
-      const V = parseFloat(E.velMs.value) || 0;
-      const ductTypeKey = E.ductType.value === 'PI' || E.ductType.value === 'GI' ? 'GI_PI' : 'flex';
-      let breakdown = []; let totalESP = friction * L;
-      breakdown.push({ name: `Friction Loss (${L} m)`, details: `Pa/m: ${friction}`, loss: (friction * L).toFixed(1) });
-      if (E.useElbow90.checked) { const k = getElbowK('90', E.elbow90Type.value, ductTypeKey); const loss = (k * 0.5 * 1.2 * V * V) * (parseFloat(E.elbow90Qty.value) || 0); totalESP += loss; breakdown.push({ name: '90° Elbow', details: `Qty: ${E.elbow90Qty.value}, Type: ${E.elbow90Type.value}`, loss: loss.toFixed(1) }); }
-      if (E.useElbow45.checked) { const k = getElbowK('45', E.elbow45Type.value, ductTypeKey); const loss = (k * 0.5 * 1.2 * V * V) * (parseFloat(E.elbow45Qty.value) || 0); totalESP += loss; breakdown.push({ name: '45° Elbow', details: `Qty: ${E.elbow45Qty.value}, Type: ${E.elbow45Type.value}`, loss: loss.toFixed(1) }); }
-      if (E.useFilter.checked) { const fPa = parseFloat(E.filterCustom.value) || parseFloat(E.filterSelect.value) || 0; totalESP += fPa; breakdown.push({ name: 'Filter', details: `Pa`, loss: fPa.toFixed(1) }); }
-      if (E.useDamper.checked) { const dPa = parseFloat(E.damperPa.value) || 0; totalESP += dPa; breakdown.push({ name: 'Damper', details: 'Pa', loss: dPa.toFixed(1) }); }
-      if (E.useOther.checked) { const oPa = parseFloat(E.otherPa.value) || 0; totalESP += oPa; breakdown.push({ name: 'Other', details: 'Pa', loss: oPa.toFixed(1) }); }
-      E.espResult.textContent = `ESP = ${totalESP.toFixed(1)} Pa`;
-      E.breakdownBody.innerHTML = breakdown.map(b => `<tr><td>${b.name}</td><td>${b.details}</td><td>${b.loss}</td></tr>`).join('');
-      E.breakdownTotal.textContent = totalESP.toFixed(1);
-    }
-
-    // ------------------ Event Listeners ------------------
-    E.ductShape.addEventListener('change', () => { if (E.ductShape.value === 'round') { E.rowRoundSize.style.display = 'grid'; E.rowRectSize.style.display = 'none'; } else { E.rowRoundSize.style.display = 'none'; E.rowRectSize.style.display = 'grid'; } });
-    E.ductType.addEventListener('change', () => { if (E.ductType.value === 'flex') { E.rowFlexQual.style.display = 'grid'; } else { E.rowFlexQual.style.display = 'none'; } calculateESP(); });
-
-    const allInputs = [E.diaMm, E.wMm, E.hMm, E.ductLen, E.flowVal, E.flowUnit, E.ductType, E.ductShape, E.elbow90Type, E.elbow90Qty, E.useElbow90, E.elbow45Type, E.elbow45Qty, E.useElbow45, E.filterSelect, E.filterCustom, E.useFilter, E.damperPa, E.useDamper, E.otherPa, E.useOther, E.flexQual];
-
-    allInputs.forEach(el => { const eventType = el.tagName === 'SELECT' || el.type === 'checkbox' ? 'change' : 'input'; el.addEventListener(eventType, calculateESP); });
-
-    E.calcBtn.addEventListener('click', calculateESP);
-
-    E.resetBtn.addEventListener('click', () => {
-      document.querySelectorAll('input').forEach(i => { if (i.type === 'number' || i.type === 'text') i.value = ''; if (i.type === 'checkbox') i.checked = false; });
-      document.querySelectorAll('select').forEach(s => s.selectedIndex = 0);
-      updateDerivedAndFriction();
-      calculateESP();
+    document.addEventListener('DOMContentLoaded', () => {
+      const frictionTable = [{ D: 100, vals: [0.730, 1.507, 2.537, 3.813, 5.332, 7.092, 9.091, 11.327, 13.799] }, { D: 150, vals: [0.436, 0.904, 1.525, 2.295, 3.213, 4.277, 5.486, 6.838, 8.335] }, { D: 200, vals: [0.304, 0.631, 1.066, 1.606, 2.250, 2.997, 3.845, 4.794, 5.845] }, { D: 250, vals: [0.230, 0.478, 0.809, 1.220, 1.709, 2.277, 2.923, 3.646, 4.445] }, { D: 300, vals: [0.183, 0.382, 0.646, 0.975, 1.367, 1.822, 2.339, 2.918, 3.558] }, { D: 350, vals: [0.151, 0.316, 0.535, 0.807, 1.132, 1.509, 1.938, 2.418, 2.949] }, { D: 400, vals: [0.128, 0.268, 0.454, 0.686, 0.962, 1.283, 1.648, 2.056, 2.508] }, { D: 450, vals: [0.111, 0.232, 0.393, 0.594, 0.834, 1.112, 1.428, 1.783, 2.175] }, { D: 500, vals: [0.097, 0.204, 0.346, 0.523, 0.734, 0.979, 1.257, 1.569, 1.915] }];
+      const velocities = [2, 3, 4, 5, 6, 7, 8, 9, 10];
+      const Kvalues = { GI_PI: { '90_short': 1.0, '90_long': 0.4, '45_short': 0.9, '45_long': 0.4 }, flex: { '90_short': 1.3, '90_long': 0.6, '45_short': 1.1, '45_long': 0.5 } };
+      const selectDuct = document.getElementById('ductType'), selectShape = document.getElementById('ductShape'), rowFlex = document.getElementById('rowFlexQual'), rowRound = document.getElementById('rowRoundSize'), rowRect = document.getElementById('rowRectSize'); selectDuct.addEventListener('change', () => { rowFlex.style.display = selectDuct.value === 'flex' ? 'flex' : 'none'; calcESP() }); selectShape.addEventListener('change', () => { rowRound.style.display = selectShape.value === 'round' ? 'flex' : 'none'; rowRect.style.display = selectShape.value === 'rect' ? 'flex' : 'none'; calcESP() }); document.getElementById('diaMm').addEventListener('input', calcESP); document.getElementById('wMm').addEventListener('input', calcESP); document.getElementById('hMm').addEventListener('input', calcESP); document.getElementById('ductLen').addEventListener('input', calcESP); document.getElementById('flowVal').addEventListener('input', calcESP); document.getElementById('flowUnit').addEventListener('change', calcESP); document.getElementById('flexQual').addEventListener('change', calcESP); document.getElementById('calcBtn').addEventListener('click', calcESP); document.getElementById('resetBtn').addEventListener('click', () => { document.querySelectorAll('input').forEach(i => i.value = ''); document.querySelectorAll('select').forEach(s => s.selectedIndex = 0); calcESP() }); function calcESP() { let dia = parseFloat(document.getElementById('diaMm').value) || 0; let w = parseFloat(document.getElementById('wMm').value) || 0; let h = parseFloat(document.getElementById('hMm').value) || 0; let L = parseFloat(document.getElementById('ductLen').value) || 0; let Q = parseFloat(document.getElementById('flowVal').value) || 0; let unit = document.getElementById('flowUnit').value; let flexFactor = parseFloat(document.getElementById('flexQual').value) || 1; if (unit === 'm3h') Q /= 3.6; let area = 0; let vel = 0; if (selectShape.value === 'round') { area = Math.PI * (dia / 1000 / 2) ** 2; vel = Q / area } else { area = (w / 1000) * (h / 1000); vel = Q / area } let D = dia; let idx = 0; while (idx < frictionTable.length - 1 && D > frictionTable[idx].D) idx++; let vals = frictionTable[idx].vals; let frIdx = Math.min(velocities.length - 1, Math.max(0, Math.round(vel - 2))); let friction = vals[frIdx]; if (selectDuct.value === 'flex') friction *= flexFactor; document.getElementById('paPerM').value = friction.toFixed(2); let totalESP = friction * L; let breakdown = document.getElementById('breakdownBody'); breakdown.innerHTML = '';['elbow90', 'elbow45', 'filter', 'damper', 'other'].forEach(id => { let use = document.getElementById('use' + id.charAt(0).toUpperCase() + id.slice(1)); if (use && use.checked) { let val = 0; switch (id) { case 'elbow90': val = parseFloat(document.getElementById('elbow90Qty').value) || 0; break; case 'elbow45': val = parseFloat(document.getElementById('elbow45Qty').value) || 0; break; case 'filter': val = parseFloat(document.getElementById('filterCustom').value) || parseFloat(document.getElementById('filterSelect').value) || 0; break; case 'damper': val = parseFloat(document.getElementById('damperPa').value) || 0; break; case 'other': val = parseFloat(document.getElementById('otherPa').value) || 0 }totalESP += val; breakdown.innerHTML += '<tr><td>' + id + '</td><td></td><td>' + val.toFixed(2) + '</td></tr>' } }); document.getElementById('espResult').textContent = 'ESP = ' + totalESP.toFixed(2) + ' Pa'; document.getElementById('breakdownTotal').textContent = totalESP.toFixed(2); document.getElementById('areaM2').value = area.toFixed(3); document.getElementById('velMs').value = vel.toFixed(2); }
+      calcESP();
     });
   </script>
 </body>
