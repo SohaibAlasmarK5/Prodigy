@@ -97,6 +97,7 @@ a {
 
 .nav-links li a.active-item {
     color: var(--color-light);
+    background-color: #444;
     border-bottom: 2px solid var(--color-dark);
 }
 
