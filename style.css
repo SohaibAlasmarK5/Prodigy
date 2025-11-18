@@ -1,20 +1,8 @@
-/*
-|========================================================================
-| PRODIGY WEBSITE STYLESHEET (style.css)
-|========================================================================
-| This file contains all styles for the responsive, red-themed Prodigy site.
-*/
-
-/* === General Setup & Variables === */
 :root {
     --color-primary: #C20000;
-    /* Deep Red Theme */
     --color-secondary: #EF233C;
-    /* Brighter Red Accent */
     --color-dark: #2B2D42;
-    /* Dark Text/Background (Near Black) */
     --color-light: #EDF2F4;
-    /* Light Text/Background (Off-White) */
     --padding-base: 1.5rem;
 }
 
@@ -24,7 +12,6 @@
     padding: 0;
 }
 
-/* FIX: Force scrollbar to prevent layout shift when navigating between pages */
 html {
     overflow-y: scroll;
 }
@@ -46,12 +33,9 @@ a {
     color: var(--color-dark);
 }
 
-/* === Navigation Bar (Header) - Compact and Consistent === */
 .navbar {
     background-color: var(--color-primary);
-    /* Set to Deep Red */
     height: 85px;
-    /* Increased height */
     padding: 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     z-index: 10;
@@ -59,17 +43,13 @@ a {
 
 .navbar .container {
     height: 100%;
-    /* Ensures container fills 85px height */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    /* Vertically centers content */
     padding: 0 0;
-    /* Ensures no vertical padding */
 }
 
-/* --- LOGO STYLES --- */
 .logo-container {
     display: flex;
     align-items: center;
@@ -78,7 +58,6 @@ a {
     height: 100%;
     width: auto;
     background-color: var(--color-light);
-    /* Light background for logo visibility */
 }
 
 .logo-img {
@@ -91,19 +70,14 @@ a {
     display: block;
 }
 
-/* -------------------- */
-
-
 .nav-links {
     display: flex;
     gap: 2rem;
-    /* Increased spacing */
     align-items: center;
     list-style: none;
     position: relative;
 }
 
-/* Style for individual list items in the main nav */
 .nav-links li {
     list-style: none;
 }
@@ -127,25 +101,20 @@ a {
     border-bottom: 2px solid var(--color-dark);
 }
 
-/* === DROPDOWN MENU STYLING (The core of the fix) === */
 .nav-dropdown-item {
-    /* Anchors the dropdown menu relative to this list item */
     position: relative;
     padding: 0;
 }
 
 .dropdown-menu {
     display: none;
-    /* Hidden by default */
     position: absolute;
     top: 100%;
-    /* FIX: Positions the dropdown right below the list item */
     left: 0;
     min-width: 220px;
     background-color: var(--color-dark);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     z-index: 20;
-    /* FIX: Ensures it sits ABOVE the navbar */
     padding: 0.5rem 0;
     text-align: left;
     list-style: none;
@@ -153,7 +122,6 @@ a {
     overflow: hidden;
 }
 
-/* Dropdown menu links override main nav link styles */
 .dropdown-menu li a {
     color: var(--color-light);
     padding: 0.8rem 1.2rem;
@@ -163,18 +131,15 @@ a {
     white-space: nowrap;
 }
 
-/* Dropdown menu link hover effect */
 .dropdown-menu li a:hover {
     background-color: var(--color-primary);
     color: var(--color-light);
     border-bottom: none;
 }
 
-/* Show the dropdown on hover of the parent li */
 .nav-dropdown-item:hover .dropdown-menu {
     display: block;
 }
-
 
 .nav-controls {
     display: flex;
@@ -206,17 +171,14 @@ a {
     cursor: pointer;
 }
 
-/* Mobile Navigation Dropdown */
 .nav-links.active {
     display: flex;
     flex-direction: column;
     position: absolute;
     top: 85px;
-    /* Drops menu exactly below the 85px bar */
     left: 0;
     width: 100%;
     background-color: var(--color-primary);
-    /* Set to Deep Red */
     padding: var(--padding-base) 0;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -225,7 +187,6 @@ a {
 
 .nav-links.active li {
     width: 100%;
-    /* Ensures list items take full width in mobile menu */
 }
 
 .nav-links.active li a {
@@ -233,14 +194,10 @@ a {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Mobile: Ensure the dropdown menu is also displayed inline if the main nav is active */
 .nav-links.active .dropdown-menu {
     position: static;
-    /* Stack vertically instead of absolute positioning */
     display: block;
-    /* Always visible when main menu is open */
     background-color: var(--color-secondary);
-    /* Use a slightly different color for hierarchy */
     width: 100%;
     box-shadow: none;
     border-radius: 0;
@@ -248,12 +205,9 @@ a {
 
 .nav-links.active .dropdown-menu li a {
     padding-left: 3rem;
-    /* Indent mobile dropdown links */
     background-color: var(--color-secondary);
 }
 
-
-/* === Main Content (Generic Sections) === */
 .content-section {
     background-color: var(--color-light);
     padding: 6rem 0;
@@ -276,11 +230,8 @@ a {
     background-color: #f4f4f4;
 }
 
-
-/* === Footer === */
 .footer {
     background-color: var(--color-primary);
-    /* Set to Deep Red */
     color: var(--color-light);
     padding-top: 3rem;
 }
@@ -326,11 +277,6 @@ a {
     font-size: 0.9rem;
 }
 
-
-/* ================================================= */
-/* === Styles for the About Page Highlights (INLINE ICON) === */
-/* ================================================= */
-
 .about-main {
     padding: 4rem 0 6rem;
     background-color: var(--color-light);
@@ -348,18 +294,15 @@ a {
     text-align: center;
 }
 
-/* Container for all highlight items */
 .about-highlights {
     max-width: 800px;
     margin: 0 auto;
     padding: 2rem 0;
 }
 
-/* 1. Highlight item displays block content */
 .highlight-item {
     display: block;
     margin-bottom: 2.5rem;
-    /* Added styles for border, padding, and shadow */
     padding: var(--padding-base);
     border: 1px solid var(--color-light);
     border-radius: 8px;
@@ -368,17 +311,12 @@ a {
     transition: all 0.3s ease-in-out;
 }
 
-/* Hover Effect */
 .highlight-item:hover {
     border-color: var(--color-primary);
-    /* Border turns red on hover */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-    /* Shadow for lift effect */
     transform: translateY(-3px);
 }
 
-
-/* 2. Style the text container to center the block */
 .highlight-text {
     flex-grow: 1;
     max-width: 600px;
@@ -386,27 +324,20 @@ a {
     padding-left: 0;
 }
 
-/* --- NEW WRAPPER STYLES FOR ICON/HEADER ALIGNMENT --- */
 .heading-wrapper {
     display: flex;
-    /* Use flex to align icon and H2 side-by-side */
     align-items: center;
-    /* Vertically center icon and H2 text */
     justify-content: center;
-    /* Horizontally center the entire block */
     margin-bottom: 0.5rem;
 }
 
-/* --- UPDATED H2 STYLE --- */
 .highlight-text h2 {
     display: block;
-    /* Removed flex from H2 itself */
     margin-bottom: 0;
     font-size: 1.6rem;
     color: var(--color-dark);
 }
 
-/* --- UPDATED ICON STYLE --- */
 .icon-inline {
     color: var(--color-primary);
     font-size: 1.6rem;
@@ -419,14 +350,9 @@ a {
     color: #444;
 }
 
-
-/* === Responsiveness (Media Queries) === */
 @media (max-width: 768px) {
-
-    /* Mobile bar height */
     .navbar {
         height: 80px;
-        /* Increased mobile height to match 85px desktop change */
     }
 
     .logo-img {
@@ -451,7 +377,6 @@ a {
 
     .nav-links.active {
         top: 80px;
-        /* Adjusted menu drop position for 80px bar */
     }
 
     .footer-content {
@@ -469,18 +394,15 @@ a {
         margin: 0 0.5rem;
     }
 
-    /* Responsive Adjustments for Highlights */
     .intro-text {
         font-size: 1rem;
         margin-bottom: 2rem;
     }
 
-    /* Mobile styles for inline icon and text */
     .highlight-text {
         padding-left: 0;
     }
 
-    /* Mobile centering for the heading block */
     .heading-wrapper {
         margin-right: 0;
         margin-left: 0;
@@ -494,15 +416,9 @@ a {
         font-size: 1.4rem;
     }
 
-    /* --- FIX FOR FAN SELECTOR BUTTON STYLE --- */
     .selector-controls button {
-        /* The button was black because a background color wasn't fully defined or inherited black. */
         background-color: var(--accent);
-        /* Sets the correct red color */
-
-        /* THIS IS THE CRITICAL FIX for the invisible text */
         color: white;
-
         border: none;
         padding: 0.75rem 1.5rem;
         border-radius: var(--control-radius);
@@ -512,6 +428,5 @@ a {
 
     .selector-controls button:hover {
         background-color: #2B2D42;
-        /* Darker hover effect */
     }
 }

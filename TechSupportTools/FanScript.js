@@ -1,9 +1,3 @@
-
-
-// -------------------------
-//      FAN DATASETS
-// -------------------------
-
 const FAN_DATA = {
     HS: [
         { name: "HS-100P", minCFM: 1, maxCFM: 100, minPa: 30, data: [[0, 156], [50, 135], [100, 98], [125, 90], [150, 69], [175, 40], [198, 0]] },
@@ -12,15 +6,14 @@ const FAN_DATA = {
         { name: "HS-250P", minCFM: 337, maxCFM: 607, minPa: 200, data: [[0, 488], [200, 420], [400, 355], [600, 300], [800, 255], [1200, 160], [1405, 0]] },
         { name: "HS-315P", minCFM: 608, maxCFM: 1297, minPa: 200, data: [[0, 693], [220, 600], [440, 500], [660, 400], [880, 315], [1100, 275], [1320, 220], [1540, 180], [1760, 120], [1980, 50], [2206, 0]] }
     ],
-
     MS: [
-        { name: "MS-100", minCFM: 1, maxCFM: 85, minPa: 20, data: [[0, 110], [40, 95], [85, 70], [120, 0]] },
-        { name: "MS-150", minCFM: 86, maxCFM: 170, minPa: 80, data: [[0, 240], [90, 150], [170, 120], [260, 0]] },
-        { name: "MS-200", minCFM: 171, maxCFM: 280, minPa: 110, data: [[0, 300], [120, 240], [240, 200], [350, 0]] }
+        { name: "MS-100M", minCFM: 0, maxCFM: 160, minPa: 50, data: [[0, 315], [62, 295], [124, 270], [155, 250], [186, 224], [217, 180], [248, 125], [310, 0]] },
+        { name: "MS-150M", minCFM: 161, maxCFM: 359, minPa: 160, data: [[0, 443], [112, 415], [224, 385], [336, 357], [448, 320], [560, 240], [672, 62], [720, 0]] },
+        { name: "MS-200M", minCFM: 360, maxCFM: 500, minPa: 300, data: [[0, 580], [250, 555], [500, 500], [625, 455], [750, 400], [875, 315], [1000, 155], [1120, 0]] },
+        { name: "MS-250M", minCFM: 501, maxCFM: 691, minPa: 300, data: [[0, 670], [250, 650], [500, 610], [750, 540], [1000, 440], [1125, 350], [1250, 225], [1320, 0]] },
+        { name: "MS-315M", minCFM: 692, maxCFM: 1100, minPa: 300, data: [[0, 700], [250, 685], [500, 655], [750, 635], [1000, 580], [1250, 520], [1500, 430], [1750, 275], [1900, 0]] }
     ]
 };
-
-// -------------------------
 
 function interpolate(data, x) {
     for (let i = 1; i < data.length; i++) {
@@ -78,10 +71,6 @@ function buildChart(mode) {
 
 let currentPointDataset = buildChart("HS");
 
-// -------------------------
-//       CFM INPUT
-// -------------------------
-
 document.getElementById("cfmInput").addEventListener("input", updateResult);
 
 function updateResult() {
@@ -122,21 +111,13 @@ function updateResult() {
     chart.update();
 }
 
-// -------------------------
-//     MODE SWITCH
-// -------------------------
-
 document.getElementById("modeSelect").addEventListener("change", function () {
     const mode = this.value;
 
-    // Update fan image
     document.getElementById("fanImage").src =
         mode === "HS" ? "../Images/HSFan.png" : "../Images/MSFan.png";
 
-    // Rebuild chart
     currentPointDataset = buildChart(mode);
 
-    // Recalculate output if CFM exists
     updateResult();
 });
-
