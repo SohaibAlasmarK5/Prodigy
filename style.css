@@ -17,7 +17,6 @@ html {
 }
 
 body {
-    font-family: sans-serif;
     color: var(--color-dark);
     line-height: 1.6;
 }
@@ -225,7 +224,7 @@ a {
 }
 
 .main-title {
-    color: var(--color-primary);
+    color: black;
     font-size: 3rem;
     margin-bottom: 1rem;
 }
@@ -292,9 +291,6 @@ a {
     background-color: var(--color-light);
 }
 
-.about-main .main-title {
-    color: var(--color-primary);
-}
 
 .intro-text {
     font-size: 1.15rem;

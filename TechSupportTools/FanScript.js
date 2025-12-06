@@ -87,13 +87,13 @@ function buildChart(mode) {
     }));
 
     const pointDataset = {
-        // Use translation object for label
         label: TRANSLATIONS[currentLang].POINT_LABEL,
         data: [],
         pointBackgroundColor: "black",
-        pointRadius: 8,
-        pointStyle: 'crossRot',
-        borderWidth: 3,
+        pointBorderColor: "black",
+        pointRadius: 5,
+        pointStyle: 'circle',   
+        borderWidth: 0,
         type: "scatter",
         showLine: false
     };

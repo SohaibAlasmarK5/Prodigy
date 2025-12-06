@@ -1,7 +1,7 @@
 :root {
     --tool-bg: #EDF2FF;
     --tool-card: #F9FAFC;
-    --tool-accent: var(--color-primary);
+    --tool-accent: black;
     --tool-text: var(--color-dark);
     --tool-border: #e6eef3;
     --control-radius: 8px;
