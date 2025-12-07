@@ -1,9 +1,14 @@
 :root {
     --color-primary: #C20000;
+    /* Red */
     --color-secondary: #C20000;
+    /* Red */
     --color-dark: #2B2D42;
+    /* Dark Grey/Black */
     --color-light: #EDF2F4;
+    /* Light White/Grey */
     --padding-base: 1.5rem;
+    --color-accent-blue: #b45754;
 }
 
 * {
@@ -31,6 +36,8 @@ a {
     text-decoration: none;
     color: var(--color-dark);
 }
+
+/* --- Navbar Styles --- */
 
 .navbar {
     background-color: var(--color-primary);
@@ -170,6 +177,7 @@ a {
     cursor: pointer;
 }
 
+/* Mobile Navigation active state */
 .nav-links.active {
     display: flex;
     flex-direction: column;
@@ -212,10 +220,10 @@ a {
     background-color: var(--color-secondary);
 }
 
-/* Dropdown arrow icon */
 .dropdown-arrow {
     display: none;
 }
+
 
 .content-section {
     background-color: var(--color-light);
@@ -238,6 +246,139 @@ a {
 .placeholder-section:nth-child(even) {
     background-color: #f4f4f4;
 }
+
+/* --- Slider/Hero Section Styles (with colors) --- */
+
+.hero {
+    position: relative;
+    height: 90vh;
+    width: 100%;
+    overflow: hidden;
+    background-color: white;
+    /* fallback */
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.9s ease-in-out;
+    height: 100%;
+}
+
+.slide {
+    display: flex;
+    width: 100%;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 5%;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+}
+
+.slide.active {
+    opacity: 1;
+    position: relative;
+}
+
+.slide-img {
+    flex: 1;
+    max-width: 50%;
+}
+
+.slide-img img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.slide-content {
+    flex: 1;
+    color: var(--color-dark);
+    /* Using dark color */
+    padding-left: 3rem;
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.slide-content h2 {
+    /* Subtle shadow to help text stand out over images */
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+.slide-content p {
+    /* Subtle shadow to help text stand out over images */
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+.slide.active .slide-content {
+    opacity: 1;
+    transform: translateX(0);
+    transition-delay: 0.5s;
+}
+
+.hero-btn {
+    display: inline-block;
+    padding: 12px 28px;
+    /* Base color: Red */
+    border: 2px solid var(--color-primary);
+    color: var(--color-primary);
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.hero-btn:hover {
+    background-color: var(--color-accent-blue);
+    border-color: var(--color-accent-blue);
+    color: white;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.prev-slide,
+.next-slide {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    /* Default background remains dark/subtle */
+    background: rgba(43, 45, 66, 0.7);
+    /* Using --color-dark with transparency */
+    color: var(--color-light);
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    z-index: 10;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.prev-slide:hover,
+.next-slide:hover {
+    background-color: var(--color-accent-blue);
+    /* Hover color: Blue */
+    transform: translateY(-50%) scale(1.1);
+    /* Subtle "pop" effect */
+}
+
+.prev-slide {
+    left: 10px;
+}
+
+.next-slide {
+    right: 10px;
+}
+
+/* --- Footer Styles --- */
 
 .footer {
     background-color: var(--color-primary);
@@ -286,11 +427,32 @@ a {
     font-size: 0.9rem;
 }
 
+.footer .social-media a.facebook:hover {
+    color: #1877F2;
+}
+
+.footer .social-media a.instagram:hover {
+    color: #E4405F;
+}
+
+.footer .social-media a.twitter:hover {
+    color: #1DA1F2;
+}
+
+.footer .social-media a.linkedin:hover {
+    color: #0A66C2;
+}
+
+.footer .social-media a.youtube:hover {
+    color: #FF0000;
+}
+
+/* --- About Page Styles --- */
+
 .about-main {
     padding: 4rem 0 6rem;
     background-color: var(--color-light);
 }
-
 
 .intro-text {
     font-size: 1.15rem;
@@ -356,31 +518,7 @@ a {
     color: #444;
 }
 
-.footer .social-media a {
-    transition: color 0.3s;
-}
-
-.footer .social-media a.facebook:hover {
-    color: #1877F2;
-}
-
-.footer .social-media a.instagram:hover {
-    color: #E4405F;
-}
-
-.footer .social-media a.twitter:hover {
-    color: #1DA1F2;
-}
-
-.footer .social-media a.linkedin:hover {
-    color: #0A66C2;
-}
-
-.footer .social-media a.youtube:hover {
-    color: #FF0000;
-}
-
-/* Responsive/mobile */
+/* --- Responsive/mobile --- */
 @media (max-width: 768px) {
     .navbar {
         height: 80px;

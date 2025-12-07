@@ -1,10 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Update year
     const yearSpan = document.getElementById('current-year');
     if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 
-    // Mobile menu toggle
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
     if (menuToggle && navLinks) {
@@ -13,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Dropdown toggle on mobile
     const dropdownItems = document.querySelectorAll('.nav-dropdown-item > a');
     dropdownItems.forEach(dropdown => {
         dropdown.addEventListener('click', (e) => {
@@ -25,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Language toggle
     const langToggle = document.getElementById('language-toggle');
     const allTranslatableElements = document.querySelectorAll('[data-en], [data-ar], [data-en-alt], [data-ar-alt], [data-en-title], [data-ar-title], [data-en-placeholder], [data-ar-placeholder]');
 
@@ -56,19 +52,60 @@ document.addEventListener('DOMContentLoaded', () => {
             setLanguage(langToggle.getAttribute('data-lang'));
         });
     }
-    // Reset mobile menu on window resize
+
     window.addEventListener('resize', () => {
         if (window.innerWidth > 768) {
-            // Remove mobile menu active class
-            if (navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-            }
-
-            // Close any open dropdowns
-            document.querySelectorAll('.dropdown-menu.open').forEach(submenu => {
-                submenu.classList.remove('open');
-            });
+            if (navLinks.classList.contains('active')) navLinks.classList.remove('active');
+            document.querySelectorAll('.dropdown-menu.open').forEach(submenu => submenu.classList.remove('open'));
         }
     });
 
+    // --- Slider Code ---
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.querySelector('.prev-slide');
+    const nextBtn = document.querySelector('.next-slide');
+    let currentIndex = 0;
+    let isSliding = false;
+
+    function showSlide(index) {
+        if (isSliding) return;
+        isSliding = true;
+
+        slides.forEach((slide, i) => {
+            if (i === index) {
+                slide.classList.add('active');
+                slide.style.opacity = '1';
+                slide.style.position = 'relative';
+                slide.style.pointerEvents = 'auto'; // allow hover
+            } else {
+                slide.classList.remove('active');
+                slide.style.opacity = '0';
+                slide.style.position = 'absolute';
+                slide.style.pointerEvents = 'none'; // block hover
+            }
+        });
+
+        // Wait for CSS transition to finish
+        setTimeout(() => {
+            isSliding = false;
+        }, 1200);
+    }
+
+    prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        showSlide(currentIndex);
+    });
+
+    nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        showSlide(currentIndex);
+    });
+
+    // Auto-slide
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        showSlide(currentIndex);
+    }, 5000);
+
+    showSlide(currentIndex);
 });

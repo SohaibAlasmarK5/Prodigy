@@ -9,73 +9,12 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        .hero {
-            position: relative;
-            height: 90vh;
-            width: 100%;
-            overflow: hidden;
-        }
-
-        .hero-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.45);
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            top: 50%;
-            transform: translateY(-50%);
-            text-align: center;
-            color: white;
-            padding: 0 20px;
-        }
-
-        .hero-content h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-        }
-
-        .hero-btn {
-            display: inline-block;
-            padding: 12px 28px;
-            border: 2px solid white;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            transition: 0.3s ease;
-        }
-
-        .hero-btn:hover {
-            background: white;
-            color: black;
-        }
-
         .white {
             color: white;
         }
 
         .logo-container {
-            background-color: #393e46;
+            background-color: white;
         }
     </style>
 </head>
@@ -106,18 +45,58 @@
                         class="fas fa-bars"></i></button></div>
         </div>
     </header>
+    <section class="hero">
+        <div class="slider">
+            <div class="slide active">
+                <div class="slide-img">
+                    <img src="Images/HS_200P.jpg" alt="Slide 1">
+                </div>
+                <div class="slide-content">
+                    <h2 data-en="Clean Air Starts with Prodigy" data-ar="الهواء النظيف يبدأ مع بروديجي">Clean Air Starts
+                        with Prodigy</h2>
+                    <p data-en="Advanced ventilation engineered for everyday spaces."
+                        data-ar="تهوية متقدمة مصممة للمساحات اليومية">
+                        Advanced ventilation engineered for everyday spaces.
+                    </p>
+                    <a href="#products" class="hero-btn" data-en="View Products" data-ar="عرض المنتجات">View
+                        Products</a>
+                </div>
+            </div>
 
+            <div class="slide">
+                <div class="slide-img">
+                    <img src="Images/HS_250P.jpg" alt="Slide 2">
+                </div>
+                <div class="slide-content">
+                    <h2 data-en="Efficient Ventilation Solutions" data-ar="حلول التهوية الفعالة">Efficient Ventilation
+                        Solutions</h2>
+                    <p data-en="Innovative products designed to improve air quality."
+                        data-ar="منتجات مبتكرة لتحسين جودة الهواء">
+                        Innovative products designed to improve air quality.
+                    </p>
+                    <a href="#products" class="hero-btn" data-en="View Products" data-ar="عرض المنتجات">View
+                        Products</a>
+                </div>
+            </div>
 
-    <section class="hero"><video autoplay muted loop playsinline class="hero-video">
-            <source src="Images/fan_vid.mp4" type="video/mp4">
-        </video>
-        <div class="overlay"></div>
-        <div class="hero-content">
-            <h1 class="white" data-en="Clean Air Starts with Prodigy" data-ar="الهواء النظيف يبدأ مع بروديجي">Clean Air
-                Starts with Prodigy</h1>
-            <p class="white" data-en="Advanced ventilation engineered for everyday spaces."
-                data-ar="تهوية متقدمة مصممة للمساحات اليومية">Advanced ventilation engineered for everyday spaces.</p>
-            <a href="#products" class="hero-btn" data-en="View Products" data-ar="عرض المنتجات">View Products</a>
+            <div class="slide">
+                <div class="slide-img">
+                    <img src="Images/HS_315P.jpg" alt="Slide 3">
+                </div>
+                <div class="slide-content">
+                    <h2 data-en="Smart Air Control" data-ar="تحكم ذكي بالهواء">Smart Air Control</h2>
+                    <p data-en="Comfortable and energy-efficient ventilation for your spaces."
+                        data-ar="تهوية مريحة وموفرة للطاقة لمساحاتك">
+                        Comfortable and energy-efficient ventilation for your spaces.
+                    </p>
+                    <a href="#products" class="hero-btn" data-en="View Products" data-ar="عرض المنتجات">View
+                        Products</a>
+                </div>
+            </div>
+
+            <!-- Navigation buttons -->
+            <button class="prev-slide">&#10094;</button>
+            <button class="next-slide">&#10095;</button>
         </div>
     </section>
 
