@@ -46,6 +46,10 @@
       color: black;
     }
 
+    .labelsAlign {
+      text-align: left;
+    }
+
     input,
     select,
     button {
@@ -167,13 +171,15 @@
       <div class="calculator">
         <h2 style="text-align:center;" data-en="Airflow Calculator" data-ar="حاسبة تدفق الهواء">Airflow
           Calculator</h2>
-        <label data-en="Length (m)" data-ar="الطول (م)">Length (m)</label>
-        <input type="number" id="length" step="0.01" min="0">
-        <label data-en="Width (m)" data-ar="العرض (م)">Width (m)</label>
-        <input type="number" id="width" step="0.01" min="0">
-        <label data-en="Height (m)" data-ar="الارتفاع (م)">Height (m)</label>
-        <input type="number" id="height" step="0.01" min="0">
-        <label data-en="Room Type" data-ar="نوع الغرفة">Room Type</label>
+        <div class="labelsAlign">
+          <label data-en="Length (m)" data-ar="الطول (م)">Length (m)</label>
+          <input type="number" id="length" step="0.01" min="0">
+          <label data-en="Width (m)" data-ar="العرض (م)">Width (m)</label>
+          <input type="number" id="width" step="0.01" min="0">
+          <label data-en="Height (m)" data-ar="الارتفاع (م)">Height (m)</label>
+          <input type="number" id="height" step="0.01" min="0">
+          <label data-en="Room Type" data-ar="نوع الغرفة">Room Type</label>
+        </div>
         <select id="room">
           <option value="Basements" data-en="Basements (3–4 ACH)" data-ar="الأقبية (3–4 ACH)">Basements (3–4 ACH)
           </option>
