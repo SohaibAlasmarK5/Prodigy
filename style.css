@@ -685,3 +685,138 @@ a {
         margin-left: 0;
     }
 }
+
+/* ============================= */
+/* AIRFLOW CALCULATOR PAGE ONLY  */
+/* ============================= */
+
+/* Page header (NOT navbar) */
+/* Page Header */
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: var(--color-light);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.page-header h1 {
+    color: black;
+    margin: 0;
+    font-size: 2rem;
+    text-align: center;
+}
+
+/* Calculator & selector cards */
+.airflow-page .calculator,
+.airflow-page .selector {
+    width: 50%;
+    /* optional to prevent super-wide cards */
+    margin: 25px auto 0 auto;
+    /* centers horizontally with top margin */
+    background: #F9FAFC;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
+}
+
+/* Labels */
+.airflow-page label {
+    display: block;
+    margin-top: 12px;
+    font-weight: bold;
+    color: black;
+}
+
+.airflow-page .labelsAlign {
+    text-align: left;
+}
+
+/* Inputs */
+.airflow-page input,
+.airflow-page select,
+.airflow-page button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 6px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+/* Buttons */
+.airflow-page button {
+    background: var(--color-primary);
+    color: var(--color-light);
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 15px;
+    transition: background-color 0.3s;
+}
+
+.airflow-page button:hover {
+    background: var(--color-secondary);
+}
+
+/* Result boxes */
+.airflow-page .result,
+.airflow-page .selected-fan {
+    margin-top: 20px;
+    background: #ffe6e6;
+    padding: 18px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: black;
+}
+
+/* Chart */
+.airflow-page .chart-wrapper {
+    width: 100%;
+    height: 500px;
+    margin-top: 25px;
+}
+
+/* Airflow row */
+.airflow-page .airflow-row {
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+    margin-top: 15px;
+    align-items: flex-start;
+}
+
+.airflow-page .airflow-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Notes */
+.airflow-page .custom-note {
+    font-size: 0.8rem;
+    color: #555;
+    margin-top: 3px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .page-header {
+        text-align: center;
+    }
+
+    .airflow-page .calculator,
+    .airflow-page .selector {
+        width: 100%;
+        margin: 15px auto 0 auto;
+        padding: 20px;
+    }
+
+    .airflow-page .chart-wrapper {
+        height: 700px;
+    }
+}

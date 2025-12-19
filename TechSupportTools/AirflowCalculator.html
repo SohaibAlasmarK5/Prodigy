@@ -10,127 +10,19 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
   <link rel="stylesheet" href="../style.css"> <!-- your main CSS -->
-  <style>
-    /* Page-specific overrides that don't conflict with main.css */
 
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      background: var(--color-light);
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      position: relative;
-    }
-
-    header h1 {
-      color: black;
-      margin: 0;
-      font-size: 2rem;
-      text-align: center;
-    }
-
-    .calculator,
-    .selector {
-      background: #F9FAFC;
-      padding: 25px;
-      margin-top: 25px;
-      border-radius: 12px;
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
-    }
-
-    label {
-      display: block;
-      margin-top: 12px;
-      font-weight: bold;
-      color: black;
-    }
-
-    .labelsAlign {
-      text-align: left;
-    }
-
-    input,
-    select,
-    button {
-      width: 100%;
-      padding: 12px;
-      margin-top: 6px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 1rem;
-      box-sizing: border-box;
-    }
-
-    button {
-      background: var(--color-primary);
-      color: var(--color-light);
-      cursor: pointer;
-      font-weight: bold;
-      margin-top: 15px;
-      transition: background-color 0.3s;
-    }
-
-    button:hover {
-      background: var(--color-secondary);
-    }
-
-    .result,
-    .selected-fan {
-      margin-top: 20px;
-      background: #ffe6e6;
-      padding: 18px;
-      border-radius: 10px;
-      text-align: center;
-      font-weight: bold;
-      font-size: 1.1rem;
-      color: black;
-    }
-
-    .chart-wrapper {
-      width: 100%;
-      height: 500px;
-      margin-top: 25px;
-    }
-
-    .airflow-row {
-      display: flex;
-      justify-content: flex-start;
-      gap: 15px;
-      margin-top: 15px;
-      align-items: flex-start;
-    }
-
-    .airflow-box {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .custom-note {
-      font-size: 0.8rem;
-      color: #555;
-      margin-top: 3px;
-    }
-
-    @media(max-width:768px) {
-      header {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .chart-wrapper {
-        height: 700px !important;
-      }
-    }
-  </style>
 </head>
 
-<body>
+<body class="airflow-page">
   <header class="navbar fixed-top">
     <div class="container">
       <div class="logo-container">
         <img src="../Images/logo.png" alt="Prodigy Company Logo" class="logo-img">
+        <p class="navbar-logo-text">
+          <span class="navbar-logo-brand">PRODIGY</span>
+          <span class="navbar-logo-rest" style="margin-right: 20px;">Ventilation Systems </span>
+        </p>
+
       </div>
       <nav class="nav-links">
         <li><a href="../index.html" data-en="Home" data-ar="الرئيسية">Home</a></li>
@@ -162,97 +54,105 @@
       </div>
     </div>
   </header>
-  <header>
-    <h1 data-en="PRODIGY Airflow Calculator & Fan Selector" data-ar="حاسبة تدفق الهواء ومحدد المروحة - بروديجي">PRODIGY
+
+  <header class="page-header">
+    <h1 data-en="PRODIGY Airflow Calculator & Fan Selector" data-ar="حاسبة تدفق الهواء ومحدد المروحة - بروديجي">
+      PRODIGY
       Airflow Calculator & Fan Selector</h1>
   </header>
   <main class="content-section" id="home">
     <div class="container">
-      <div class="calculator">
-        <h2 style="text-align:center;" data-en="Airflow Calculator" data-ar="حاسبة تدفق الهواء">Airflow
-          Calculator</h2>
-        <div class="labelsAlign">
-          <label data-en="Length (m)" data-ar="الطول (م)">Length (m)</label>
-          <input type="number" id="length" step="0.01" min="0">
-          <label data-en="Width (m)" data-ar="العرض (م)">Width (m)</label>
-          <input type="number" id="width" step="0.01" min="0">
-          <label data-en="Height (m)" data-ar="الارتفاع (م)">Height (m)</label>
-          <input type="number" id="height" step="0.01" min="0">
-          <label data-en="Room Type" data-ar="نوع الغرفة">Room Type</label>
-        </div>
-        <select id="room">
-          <option value="Basements" data-en="Basements (3–4 ACH)" data-ar="الأقبية (3–4 ACH)">Basements (3–4 ACH)
-          </option>
-          <option value="Bathrooms" data-en="Bathrooms (6–7 ACH)" data-ar="الحمامات (6–7 ACH)">Bathrooms (6–7 ACH)
-          </option>
-          <option value="Bedrooms" data-en="Bedrooms (5–6 ACH)" data-ar="غرف النوم (5–6 ACH)">Bedrooms (5–6 ACH)
-          </option>
-          <option value="Kitchens" data-en="Kitchens (Residential) (7–8 ACH)" data-ar="المطابخ (سكني) (7–8 ACH)">
-            Kitchens
-            (Residential) (7–8 ACH)</option>
-          <option value="Laundry" data-en="Laundry Rooms (8–9 ACH)" data-ar="غرف الغسيل (8–9 ACH)">Laundry Rooms (8–9
-            ACH)
-          </option>
-          <option value="Living" data-en="Living Rooms (6–8 ACH)" data-ar="غرف المعيشة (6–8 ACH)">Living Rooms (6–8 ACH)
-          </option>
-          <option value="Offices" data-en="Offices (6–8 ACH)" data-ar="المكاتب (6–8 ACH)">Offices (6–8 ACH)</option>
-          <option value="Conference" data-en="Conference Rooms (8–12 ACH)" data-ar="غرف الاجتماعات (8–12 ACH)">
-            Conference
-            Rooms (8–12 ACH)</option>
-          <option value="Server" data-en="Computer / Server Rooms (10–14 ACH)"
-            data-ar="غرف الكمبيوتر / السيرفر (10–14 ACH)">Computer / Server Rooms (10–14 ACH)</option>
-          <option value="Break" data-en="Break Rooms (7–8 ACH)" data-ar="غرف الاستراحة (7–8 ACH)">Break Rooms (7–8 ACH)
-          </option>
-          <option value="Retail" data-en="Retail Stores (6–10 ACH)" data-ar="المحلات التجارية (6–10 ACH)">Retail Stores
-            (6–10 ACH)</option>
-          <option value="Restaurant" data-en="Restaurant Dining Areas (8–10 ACH)"
-            data-ar="مطاعم / مناطق الطعام (8–10 ACH)">Restaurant Dining Areas (8–10 ACH)</option>
-          <option value="CommercialKitchen" data-en="Commercial Kitchens (14–18 ACH)"
-            data-ar="المطابخ التجارية (14–18 ACH)">Commercial Kitchens (14–18 ACH)</option>
-          <option value="PublicRestrooms" data-en="Public Restrooms (10–12 ACH)"
-            data-ar="دورات المياه العامة (10–12 ACH)">Public Restrooms (10–12 ACH)</option>
-          <option value="Auditorium" data-en="Auditoriums (12–14 ACH)" data-ar="المدرجات / القاعات (12–14 ACH)">
-            Auditoriums (12–14 ACH)</option>
-        </select>
-
-        <label data-en="Fan Material" data-ar="مادة المروحة">Fan Material</label>
-        <select id="material" onchange="updateChart()">
-          <option value="ms" data-en="Metal (MS)" data-ar="معدن (MS)">Metal (MS)</option>
-          <option value="hs" data-en="Plastic (HS)" data-ar="بلاستيك (HS)">Plastic (HS)</option>
-        </select>
-        <button onclick="calculateAirflow()" data-en="Calculate & Show Fan Selector"
-          data-ar="احسب وأظهر محدد المروحة">Calculate & Show Fan Selector</button>
-        <div class="result" id="result"></div>
-      </div>
-
-      <div class="selector" id="selector" style="display:none;">
-        <h2 style="text-align:center;" data-en="Fan Selector" data-ar="محدد المروحة">Fan Selector</h2>
-
-        <div class="airflow-row">
-          <div class="airflow-box">
-            <label data-en="Required Airflow (CFM)" data-ar="تدفق الهواء المطلوب (CFM)">Required Airflow (CFM)</label>
-            <input type="number" id="cfmInput" readonly>
+      <div class="middle-table">
+        <div class="calculator">
+          <h2 style="text-align:center;" data-en="Airflow Calculator" data-ar="حاسبة تدفق الهواء">Airflow
+            Calculator</h2>
+          <div class="labelsAlign">
+            <label data-en="Length (m)" data-ar="الطول (م)">Length (m)</label>
+            <input type="number" id="length" step="0.01" min="0">
+            <label data-en="Width (m)" data-ar="العرض (م)">Width (m)</label>
+            <input type="number" id="width" step="0.01" min="0">
+            <label data-en="Height (m)" data-ar="الارتفاع (م)">Height (m)</label>
+            <input type="number" id="height" step="0.01" min="0">
+            <label data-en="Room Type" data-ar="نوع الغرفة">Room Type</label>
           </div>
-          <div class="airflow-box">
-            <label>
-              <input type="checkbox" id="customCheck" style="width:15px;vertical-align:middle;">
-              <span data-en="Custom Airflow (CFM)" data-ar="تدفق الهواء المخصص (CFM)">Custom Airflow (CFM)</span>
-            </label>
-            <input type="number" id="customCFM" disabled>
-            <div class="custom-note" data-en="Check to enter Custom Airflow; uncheck to revert."
-              data-ar="اختر لإدخال تدفق هواء مخصص؛ قم بإلغاء التحديد للعودة.">Check to enter Custom Airflow; uncheck to
-              revert.</div>
+          <select id="room">
+            <option value="Basements" data-en="Basements (3–4 ACH)" data-ar="الأقبية (3–4 ACH)">Basements (3–4 ACH)
+            </option>
+            <option value="Bathrooms" data-en="Bathrooms (6–7 ACH)" data-ar="الحمامات (6–7 ACH)">Bathrooms (6–7 ACH)
+            </option>
+            <option value="Bedrooms" data-en="Bedrooms (5–6 ACH)" data-ar="غرف النوم (5–6 ACH)">Bedrooms (5–6 ACH)
+            </option>
+            <option value="Kitchens" data-en="Kitchens (Residential) (7–8 ACH)" data-ar="المطابخ (سكني) (7–8 ACH)">
+              Kitchens
+              (Residential) (7–8 ACH)</option>
+            <option value="Laundry" data-en="Laundry Rooms (8–9 ACH)" data-ar="غرف الغسيل (8–9 ACH)">Laundry Rooms (8–9
+              ACH)
+            </option>
+            <option value="Living" data-en="Living Rooms (6–8 ACH)" data-ar="غرف المعيشة (6–8 ACH)">Living Rooms (6–8
+              ACH)
+            </option>
+            <option value="Offices" data-en="Offices (6–8 ACH)" data-ar="المكاتب (6–8 ACH)">Offices (6–8 ACH)</option>
+            <option value="Conference" data-en="Conference Rooms (8–12 ACH)" data-ar="غرف الاجتماعات (8–12 ACH)">
+              Conference
+              Rooms (8–12 ACH)</option>
+            <option value="Server" data-en="Computer / Server Rooms (10–14 ACH)"
+              data-ar="غرف الكمبيوتر / السيرفر (10–14 ACH)">Computer / Server Rooms (10–14 ACH)</option>
+            <option value="Break" data-en="Break Rooms (7–8 ACH)" data-ar="غرف الاستراحة (7–8 ACH)">Break Rooms (7–8
+              ACH)
+            </option>
+            <option value="Retail" data-en="Retail Stores (6–10 ACH)" data-ar="المحلات التجارية (6–10 ACH)">Retail
+              Stores
+              (6–10 ACH)</option>
+            <option value="Restaurant" data-en="Restaurant Dining Areas (8–10 ACH)"
+              data-ar="مطاعم / مناطق الطعام (8–10 ACH)">Restaurant Dining Areas (8–10 ACH)</option>
+            <option value="CommercialKitchen" data-en="Commercial Kitchens (14–18 ACH)"
+              data-ar="المطابخ التجارية (14–18 ACH)">Commercial Kitchens (14–18 ACH)</option>
+            <option value="PublicRestrooms" data-en="Public Restrooms (10–12 ACH)"
+              data-ar="دورات المياه العامة (10–12 ACH)">Public Restrooms (10–12 ACH)</option>
+            <option value="Auditorium" data-en="Auditoriums (12–14 ACH)" data-ar="المدرجات / القاعات (12–14 ACH)">
+              Auditoriums (12–14 ACH)</option>
+          </select>
+
+          <label data-en="Fan Material" data-ar="مادة المروحة">Fan Material</label>
+          <select id="material" onchange="updateChart()">
+            <option value="ms" data-en="Metal (MS)" data-ar="معدن (MS)">Metal (MS)</option>
+            <option value="hs" data-en="Plastic (HS)" data-ar="بلاستيك (HS)">Plastic (HS)</option>
+          </select>
+          <button onclick="calculateAirflow()" data-en="Calculate & Show Fan Selector"
+            data-ar="احسب وأظهر محدد المروحة">Calculate & Show Fan Selector</button>
+          <div class="result" id="result"></div>
+        </div>
+
+        <div class="selector" id="selector" style="display:none;">
+          <h2 style="text-align:center;" data-en="Fan Selector" data-ar="محدد المروحة">Fan Selector</h2>
+
+          <div class="airflow-row">
+            <div class="airflow-box">
+              <label data-en="Required Airflow (CFM)" data-ar="تدفق الهواء المطلوب (CFM)">Required Airflow (CFM)</label>
+              <input type="number" id="cfmInput" readonly>
+            </div>
+            <div class="airflow-box">
+              <label>
+                <input type="checkbox" id="customCheck" style="width:15px;vertical-align:middle;">
+                <span data-en="Custom Airflow (CFM)" data-ar="تدفق الهواء المخصص (CFM)">Custom Airflow (CFM)</span>
+              </label>
+              <input type="number" id="customCFM" disabled>
+              <div class="custom-note" data-en="Check to enter Custom Airflow; uncheck to revert."
+                data-ar="اختر لإدخال تدفق هواء مخصص؛ قم بإلغاء التحديد للعودة.">Check to enter Custom Airflow; uncheck
+                to
+                revert.</div>
+            </div>
           </div>
-        </div>
 
-        <div class="chart-wrapper">
-          <canvas id="fanChart"></canvas>
-        </div>
+          <div class="chart-wrapper">
+            <canvas id="fanChart"></canvas>
+          </div>
 
-        <div class="selected-fan" id="selectedFan"></div>
+          <div class="selected-fan" id="selectedFan"></div>
+        </div>
       </div>
-    </div>
   </main>
+  </div>
   <footer class="footer">
     <div class="container footer-content">
       <div class="contact-info">
