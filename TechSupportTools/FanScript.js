@@ -92,7 +92,7 @@ function buildChart(mode) {
         pointBackgroundColor: "black",
         pointBorderColor: "black",
         pointRadius: 5,
-        pointStyle: 'circle',   
+        pointStyle: 'circle',
         borderWidth: 0,
         type: "scatter",
         showLine: false
@@ -189,7 +189,6 @@ function updateResult() {
     chart.update();
 }
 
-
 document.addEventListener("DOMContentLoaded", function () {
     currentPointDataset = buildChart(document.getElementById("modeSelect").value);
 
@@ -202,4 +201,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     applyPlaceholders(currentLang);
+
+    // --- ADD THIS ---
+    window.addEventListener('resize', () => {
+        if (chart) chart.resize();
+    });
 });
