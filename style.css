@@ -803,7 +803,7 @@ a {
 /* Chart */
 .airflow-page .chart-wrapper {
     width: 100%;
-    height: 600px;
+    height: auto;
     margin-top: 25px;
 }
 
@@ -842,9 +842,6 @@ a {
         padding: 20px;
     }
 
-    .airflow-page .chart-wrapper {
-        height: 400px;
-    }
 }
 
 /* Tablet */
