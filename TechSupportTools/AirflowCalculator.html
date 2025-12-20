@@ -10,7 +10,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
   <link rel="stylesheet" href="../style.css"> <!-- your main CSS -->
-
+  <style>
+    .content-section {
+      padding: 1rem 0;
+    }
+  </style>
 </head>
 
 <body class="airflow-page">
@@ -113,12 +117,12 @@
               Auditoriums (12–14 ACH)</option>
           </select>
 
-          <label data-en="Fan Material" data-ar="مادة المروحة">Fan Material</label>
+          <label style="text-align: left;" data-en="Fan Material" data-ar="مادة المروحة">Fan Material</label>
           <select id="material" onchange="updateChart()">
             <option value="ms" data-en="Metal (MS)" data-ar="معدن (MS)">Metal (MS)</option>
             <option value="hs" data-en="Plastic (HS)" data-ar="بلاستيك (HS)">Plastic (HS)</option>
           </select>
-          <button onclick="calculateAirflow()" data-en="Calculate & Show Fan Selector"
+          <button class="afbutton" onclick="calculateAirflow()" data-en="Calculate & Show Fan Selector"
             data-ar="احسب وأظهر محدد المروحة">Calculate & Show Fan Selector</button>
           <div class="result" id="result"></div>
         </div>
@@ -259,9 +263,9 @@
       if (selectedFanPoint) { datasets.push({ label: "Selected Airflow", data: [selectedFanPoint], borderColor: "#000", pointBackgroundColor: "blue", pointRadius: 8, showLine: false }); }
 
       const allY = fans.flatMap(f => f.data.map(p => p[1]));
-      const maxY = Math.max(...allY) * 1.1;
 
-      chart = new Chart(ctx, { type: 'line', data: { datasets: datasets }, options: { responsive: true, parsing: { xAxisKey: 'x', yAxisKey: 'y' }, scales: { x: { type: 'linear', title: { display: true, text: 'Airflow (m³/h)' }, min: 0 }, y: { title: { display: true, text: 'Pressure (Pa)' }, min: 0, max: maxY } } } });
+
+      chart = new Chart(ctx, { type: 'line', data: { datasets: datasets }, options: { responsive: true, parsing: { xAxisKey: 'x', yAxisKey: 'y' }, scales: { x: { type: 'linear', title: { display: true, text: 'Airflow (m³/h)' }, min: 0 }, y: { title: { display: true, text: 'Pressure (Pa)' }, min: 0, max: 700 } } } });
 
       const fanInfo = document.getElementById('selectedFan');
       if (selectedFanPoint) { fanInfo.innerHTML = `Selected Fan: ${selected.name} &nbsp; | &nbsp; Pressure: ${selectedFanPoint.y.toFixed(1)} Pa &nbsp; | &nbsp; Airflow: ${(selectedFanPoint.x / 1.699).toFixed(1)} CFM`; }

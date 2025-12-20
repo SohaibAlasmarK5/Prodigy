@@ -17,6 +17,7 @@
     padding: 0;
 }
 
+
 html {
     overflow-y: scroll;
 }
@@ -24,8 +25,18 @@ html {
 body {
     color: var(--color-dark);
     line-height: 1.6;
+    display: flex;
+    flex-direction: column;
 }
 
+html,
+body {
+    height: 100%;
+}
+
+.content-section {
+    flex: 1;
+}
 
 a {
     text-decoration: none;
@@ -420,11 +431,17 @@ a {
 
 .contact-info p {
     margin: 0.5rem 0;
+    margin-left: 0.5rem;
+}
+
+.contact-info {
+    margin-left: 0.5rem;
 }
 
 .contact-info i {
     margin-right: 0.5rem;
     color: var(--color-light);
+    margin-left: 0.5rem;
 }
 
 .social-media a {
@@ -737,7 +754,7 @@ a {
 /* Inputs */
 .airflow-page input,
 .airflow-page select,
-.airflow-page button {
+.airflow-page .afbutton {
     width: 100%;
     padding: 12px;
     margin-top: 6px;
@@ -748,7 +765,7 @@ a {
 }
 
 /* Buttons */
-.airflow-page button {
+.airflow-page .afbutton {
     background: var(--color-primary);
     color: var(--color-light);
     cursor: pointer;
@@ -757,7 +774,7 @@ a {
     transition: background-color 0.3s;
 }
 
-.airflow-page button:hover {
+.airflow-page .afbutton:hover {
     background: var(--color-secondary);
 }
 
@@ -777,7 +794,7 @@ a {
 /* Chart */
 .airflow-page .chart-wrapper {
     width: 100%;
-    height: 500px;
+    height: 600px;
     margin-top: 25px;
 }
 
@@ -817,6 +834,17 @@ a {
     }
 
     .airflow-page .chart-wrapper {
-        height: 700px;
+        height: 400px;
+    }
+}
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 900px) {
+
+    .airflow-page .calculator,
+    .airflow-page .selector {
+        width: 100%;
+        margin: 15px auto 0 auto;
+        padding: 20px;
     }
 }

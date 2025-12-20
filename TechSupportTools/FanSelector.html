@@ -13,7 +13,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+    <style>
+        .content-section {
+            padding: 1rem 0;
+            margin: auto;
+            padding-left: 5%;
+        }
+    </style>
 </head>
 
 <body>
@@ -26,7 +32,6 @@
                     <span class="navbar-logo-brand">PRODIGY</span>
                     <span class="navbar-logo-rest" style="margin-right: 20px;">Ventilation Systems </span>
                 </p>
-
             </div>
             <nav class="nav-links">
                 <li><a href="../index.html" data-en="Home" data-ar="الرئيسية">Home</a></li>
@@ -68,37 +73,40 @@
                 <img id="fanImage" src="../Images/HSFan.png" alt="Fan Image">
             </div>
 
-            <div class="input-grid">
+            <div class="right-panel">
 
-                <div class="input-row">
-                    <label data-en="Model" data-ar="النموذج">Model</label>
-                    <select id="modeSelect">
-                        <option value="HS" data-en="Plastic (HS)" data-ar="بلاستيك (HS)">Plastic Speed (HS)</option>
-                        <option value="MS" data-en="Metal (MS)" data-ar="معدن (MS)">Metal Speed (MS)
-                        </option>
-                    </select>
+                <div class="input-grid">
+
+                    <div class="input-row">
+                        <label data-en="Model" data-ar="النموذج">Model</label>
+                        <select id="modeSelect">
+                            <option value="HS" data-en="Plastic (HS)" data-ar="بلاستيك (HS)">Plastic Speed (HS)</option>
+                            <option value="MS" data-en="Metal (MS)" data-ar="معدن (MS)">Metal Speed (MS)
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="input-row">
+                        <label data-en="Airflow (CFM)" data-ar="التدفق (CFM)">Airflow (CFM)</label>
+                        <input type="number" id="cfmInput" placeholder="Enter CFM" data-en-placeholder="Enter CFM"
+                            data-ar-placeholder="أدخل CFM">
+                    </div>
+
+                    <div class="result" id="output" data-en="Enter CFM to see fan performance"
+                        data-ar="أدخل CFM لرؤية أداء المروحة">
+                        Enter CFM to see fan performance
+                    </div>
                 </div>
 
-                <div class="input-row">
-                    <label data-en="Airflow (CFM)" data-ar="التدفق (CFM)">Airflow (CFM)</label>
-                    <input type="number" id="cfmInput" placeholder="Enter CFM" data-en-placeholder="Enter CFM"
-                        data-ar-placeholder="أدخل CFM">
+                <div class="chart-wrapper">
+                    <canvas id="fanChart"></canvas>
                 </div>
 
-                <div class="result" id="output" data-en="Enter CFM to see fan performance"
-                    data-ar="أدخل CFM لرؤية أداء المروحة">
-                    Enter CFM to see fan performance
-                </div>
-            </div>
-
-            <div class="chart-wrapper">
-                <canvas id="fanChart"></canvas>
             </div>
 
         </div>
 
     </main>
-
 
     <footer class="footer">
         <div class="container footer-content">
