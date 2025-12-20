@@ -55,10 +55,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('resize', () => {
         if (window.innerWidth > 768) {
-            if (navLinks.classList.contains('active')) navLinks.classList.remove('active');
-            document.querySelectorAll('.dropdown-menu.open').forEach(submenu => submenu.classList.remove('open'));
+            // Close mobile menu if open
+            navLinks.classList.remove('active');
+
+            // Close any open mobile dropdowns
+            document.querySelectorAll('.dropdown-menu.open, .product-dropdown.open')
+                .forEach(submenu => submenu.classList.remove('open'));
         }
     });
+
 
     // --- Slider Code ---
     const slides = document.querySelectorAll('.slide');

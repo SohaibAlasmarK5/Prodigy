@@ -14,9 +14,9 @@
 * {
     box-sizing: border-box;
     margin: 0;
+    font-family: "Poppins", "Segoe UI", Arial, sans-serif;
     padding: 0;
 }
-
 
 html {
     overflow-y: scroll;
@@ -44,7 +44,6 @@ a {
 }
 
 /* --- Navbar Styles --- */
-
 .navbar {
     background-color: var(--color-primary);
     height: 100px;
@@ -253,7 +252,6 @@ a {
     display: none;
 }
 
-
 .content-section {
     background-color: var(--color-light);
     padding: 6rem 0;
@@ -277,7 +275,6 @@ a {
 }
 
 /* --- Slider/Hero Section Styles (with colors) --- */
-
 .hero {
     position: relative;
     height: 90vh;
@@ -408,7 +405,6 @@ a {
 }
 
 /* --- Footer Styles --- */
-
 .footer {
     background-color: var(--color-primary);
     color: var(--color-light);
@@ -492,7 +488,6 @@ a {
 }
 
 /* --- About Page Styles --- */
-
 .about-main {
     padding: 4rem 0 6rem;
     background-color: var(--color-light);
@@ -642,8 +637,21 @@ a {
         transform: rotate(180deg);
     }
 
+    .nav-dropdown-item>a .product-dropdown.rotated {
+        transform: rotate(180deg);
+    }
+
     /* Mobile dropdown menu */
     .nav-links.active .dropdown-menu {
+        display: none;
+        position: static;
+        background-color: var(--color-secondary);
+        width: 100%;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .nav-links.active .product-dropdown {
         display: none;
         position: static;
         background-color: var(--color-secondary);
@@ -656,6 +664,10 @@ a {
         display: block;
     }
 
+    .nav-links.active .product-dropdown.open {
+        display: block;
+    }
+
     .navbar .navbar-logo-brand {
         font-size: 1.3rem;
     }
@@ -665,13 +677,99 @@ a {
     }
 }
 
+/* --- Mobile Responsive (Max-width: 768px) --- */
+@media (max-width: 768px) {
+
+    /* Navbar height adjustment */
+    .navbar {
+        height: 80px;
+    }
+
+    .logo-img {
+        max-height: 90%;
+    }
+
+    /* Main Nav Links */
+    .nav-links {
+        display: none;
+        width: 100%;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background-color: var(--color-primary);
+        padding: 1rem 0;
+        text-align: center;
+        z-index: 10;
+    }
+
+    /* Standard Dropdown (Technical Support) */
+    .nav-links.active .dropdown-menu {
+        position: static;
+        display: none;
+        background-color: var(--color-secondary);
+        width: 100%;
+        box-shadow: none;
+    }
+
+    /* PRODUCTS Dropdown (Mobile View) */
+    .nav-links.active .product-dropdown {
+        position: static;
+        display: none;
+        /* Controlled by 'open' class in JS */
+        flex-direction: column;
+        /* Stacks Commercial/Residential vertically */
+        min-width: 100%;
+        transform: none;
+        background-color: var(--color-secondary);
+        padding: 0;
+        box-shadow: none;
+        gap: 0;
+        /* Remove the horizontal gap for mobile */
+    }
+
+    /* Show when clicked */
+    .nav-links.active .dropdown-menu.open,
+    .nav-links.active .product-dropdown.open {
+        display: block;
+    }
+
+    /* Column Headers on Mobile (Commercial/Residential) */
+    .ulHeader {
+        background-color: rgba(0, 0, 0, 0.1);
+        /* Slight darker red for grouping */
+        color: white !important;
+        padding: 10px 20px !important;
+        text-align: left;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+
+    /* Inner Links on Mobile */
+    .innerItem,
+    .dropdown-menu li a {
+        padding: 12px 0 12px 4rem !important;
+        /* Push text to the right */
+        text-align: left;
+        background-color: var(--color-secondary);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    }
+}
+
 .navbar .navbar-logo-text {
     margin: 0;
     display: flex;
     flex-direction: column;
     /* 🔑 stack vertically */
     line-height: 1.1;
-    font-family: "Poppins", "Segoe UI", Arial, sans-serif;
 }
 
 /* Prodigy (top line) */
@@ -696,14 +794,12 @@ a {
     }
 }
 
-
 /* Tablet */
 @media (min-width: 769px) and (max-width: 1199px) {
     .navbar .logo-container {
         margin-left: 0;
     }
 }
-
 
 /* Mobile */
 @media (max-width: 768px) {
@@ -713,9 +809,8 @@ a {
 }
 
 /* ============================= */
-/* AIRFLOW CALCULATOR PAGE ONLY  */
+/* AIRFLOW CALCULATOR PAGE ONLY */
 /* ============================= */
-
 /* Page header (NOT navbar) */
 /* Page Header */
 .page-header {
@@ -841,7 +936,6 @@ a {
         margin: 15px auto 0 auto;
         padding: 20px;
     }
-
 }
 
 /* Tablet */
@@ -853,4 +947,59 @@ a {
         margin: 15px auto 0 auto;
         padding: 20px;
     }
+}
+
+.nav-dropdown-item .product-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    background-color: var(--color-dark);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 20;
+    text-align: left;
+    list-style: none;
+    border-radius: 4px;
+    overflow: hidden;
+    gap: 3rem;
+    min-width: 450px;
+    padding: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.nav-dropdown-item:hover .product-dropdown {
+    display: flex;
+}
+
+.ulHeader {
+    color: var(--color-primary) !important;
+    /* Forces Red Title */
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    display: block;
+    pointer-events: none;
+    margin: 0;
+    font-size: 1rem;
+}
+
+.product-dropdown li ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.innerItem {
+    color: var(--color-light) !important;
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 400 !important;
+    border-bottom: none !important;
+    transition: color 0.2s ease;
+}
+
+.innerItem:hover {
+    background-color: var(--color-primary);
+    color: var(--color-light);
+    border-bottom: none;
 }
