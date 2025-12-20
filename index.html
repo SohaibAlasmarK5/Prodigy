@@ -8,15 +8,6 @@
     <link rel="icon" type="image/x-icon" href="Images/favicon.ico">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        .white {
-            color: white;
-        }
-
-        .logo-container {
-            background-color: white;
-        }
-    </style>
 </head>
 
 <body>
@@ -28,11 +19,12 @@
                     <span class="navbar-logo-brand">PRODIGY</span>
                     <span class="navbar-logo-rest" style="margin-right: 20px;">Ventilation Systems </span>
                 </p>
-
             </div>
             <nav class="nav-links">
                 <li><a class="active" data-en="Home" data-ar="الرئيسية">Home</a></li>
-                <li class="nav-dropdown-item"><a data-en="Technical Support" data-ar="الدعم الفني">Technical Support</a>
+
+                <li class="nav-dropdown-item">
+                    <a data-en="Technical Support" data-ar="الدعم الفني">Technical Support</a>
                     <ul class="dropdown-menu">
                         <li><a href="TechSupportTools/FanSelector.html" data-en="Fan Selector Tool"
                                 data-ar="أداة تحديد المروحة">Fan Selector Tool</a></li>
@@ -44,15 +36,39 @@
                                 data-en="Download Catalogue" data-ar="تحميل الدليل">Download Catalogue</a></li>
                     </ul>
                 </li>
-                <li><a href="#products" data-en="Products" data-ar="المنتجات">Products</a></li>
+
+                <li class="nav-dropdown-item">
+                    <a data-en="Products" data-ar="المنتجات">Products</a>
+                    <ul class="dropdown-menu dropdown-columns">
+                        <li>
+                            <a data-en="Commercial" data-ar="تجاري">Commercial</a>
+                            <ul>
+                                <li><a href="products/commercial/inline-fan.html" data-en="Inline Fan"
+                                        data-ar="مروحة داخلية">Inline Fan</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a data-en="Residential" data-ar="سكني">Residential</a>
+                            <ul>
+                                <li><a href="products/residential/inline-fan.html" data-en="Inline Fan"
+                                        data-ar="مروحة داخلية">Inline Fan</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
                 <li><a href="about.html" data-en="About Us" data-ar="من نحن">About Us</a></li>
             </nav>
-            <div class="nav-controls"><button id="language-toggle" class="lang-btn"
-                    data-lang="ar">العربية</button><button class="menu-toggle" aria-label="Toggle navigation menu"><i
-                        class="fas fa-bars"></i></button></div>
+            <div class="nav-controls">
+                <button id="language-toggle" class="lang-btn" data-lang="ar">العربية</button>
+                <button class="menu-toggle" aria-label="Toggle navigation menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
         </div>
     </header>
-    <section class="hero">
+
+    <main class="hero">
         <div class="slider">
             <div class="slide active">
                 <div class="slide-img">
@@ -62,14 +78,12 @@
                     <h2 data-en="Clean Air Starts with Prodigy" data-ar="الهواء النظيف يبدأ مع بروديجي">Clean Air Starts
                         with Prodigy</h2>
                     <p data-en="Advanced ventilation engineered for everyday spaces."
-                        data-ar="تهوية متقدمة مصممة للمساحات اليومية">
-                        Advanced ventilation engineered for everyday spaces.
-                    </p>
+                        data-ar="تهوية متقدمة مصممة للمساحات اليومية">Advanced ventilation engineered for everyday
+                        spaces.</p>
                     <a href="#products" class="hero-btn" data-en="View Products" data-ar="عرض المنتجات">View
                         Products</a>
                 </div>
             </div>
-
             <div class="slide">
                 <div class="slide-img">
                     <img src="Images/HS_250P.jpg" alt="Slide 2">
@@ -78,14 +92,12 @@
                     <h2 data-en="Efficient Ventilation Solutions" data-ar="حلول التهوية الفعالة">Efficient Ventilation
                         Solutions</h2>
                     <p data-en="Innovative products designed to improve air quality."
-                        data-ar="منتجات مبتكرة لتحسين جودة الهواء">
-                        Innovative products designed to improve air quality.
+                        data-ar="منتجات مبتكرة لتحسين جودة الهواء">Innovative products designed to improve air quality.
                     </p>
                     <a href="#products" class="hero-btn" data-en="View Products" data-ar="عرض المنتجات">View
                         Products</a>
                 </div>
             </div>
-
             <div class="slide">
                 <div class="slide-img">
                     <img src="Images/HS_315P.jpg" alt="Slide 3">
@@ -93,19 +105,16 @@
                 <div class="slide-content">
                     <h2 data-en="Smart Air Control" data-ar="تحكم ذكي بالهواء">Smart Air Control</h2>
                     <p data-en="Comfortable and energy-efficient ventilation for your spaces."
-                        data-ar="تهوية مريحة وموفرة للطاقة لمساحاتك">
-                        Comfortable and energy-efficient ventilation for your spaces.
-                    </p>
+                        data-ar="تهوية مريحة وموفرة للطاقة لمساحاتك">Comfortable and energy-efficient ventilation for
+                        your spaces.</p>
                     <a href="#products" class="hero-btn" data-en="View Products" data-ar="عرض المنتجات">View
                         Products</a>
                 </div>
             </div>
-
-            <!-- Navigation buttons -->
             <button class="prev-slide">&#10094;</button>
             <button class="next-slide">&#10095;</button>
         </div>
-    </section>
+    </main>
 
     <footer class="footer">
         <div class="container footer-content">
@@ -114,16 +123,16 @@
                 <p><i class="fas fa-envelope"></i>contact@prodigy.com</p>
                 <p><i class="fas fa-phone"></i>+123 456 7890</p>
             </div>
-            <div class="social-media"><a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a><a href="#"
-                    class="instagram"><i class="fab fa-instagram"></i></a><a href="#" class="twitter"><i
-                        class="fab fa-twitter"></i></a><a href="#" class="linkedin"><i
-                        class="fab fa-linkedin-in"></i></a><a href="#" class="youtube"><i
-                        class="fab fa-youtube"></i></a></div>
+            <div class="social-media">
+                <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="youtube"><i class="fab fa-youtube"></i></a>
+            </div>
         </div>
-        <div class="container copyright">&copy;
-            <span id="current-year"></span>Prodigy. <span data-en="All Rights Reserved."
-                data-ar="جميع الحقوق محفوظة.">All Rights Reserved.</span>
-        </div>
+        <div class="container copyright">&copy; <span id="current-year"></span> Prodigy. <span
+                data-en="All Rights Reserved." data-ar="جميع الحقوق محفوظة.">All Rights Reserved.</span></div>
     </footer>
     <script src="script.js"></script>
 </body>
