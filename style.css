@@ -462,6 +462,15 @@ a {
     font-size: 0.9rem;
 }
 
+.footer a {
+    color: var(--color-light);
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: var(--color-dark);
+}
+
 .footer .social-media a.facebook:hover {
     color: #1877F2;
 }
