@@ -193,7 +193,7 @@ a {
 }
 
 .lang-btn:hover {
-    background-color: var(--color-secondary);
+    background-color: var(--color-accent-blue);
 }
 
 .menu-toggle {
@@ -246,10 +246,6 @@ a {
 .nav-links.active .dropdown-menu li a {
     padding-left: 3rem;
     background-color: var(--color-secondary);
-}
-
-.dropdown-arrow {
-    display: none;
 }
 
 .content-section {
@@ -314,6 +310,7 @@ a {
 .slide-img {
     flex: 1;
     max-width: 50%;
+    background-color: var(--color-light);
 }
 
 .slide-img img {
@@ -321,6 +318,7 @@ a {
     height: auto;
     object-fit: cover;
     border-radius: 8px;
+    mix-blend-mode: multiply;
 }
 
 .slide-content {
@@ -557,6 +555,22 @@ a {
     color: #444;
 }
 
+.nav-dropdown-item:hover .product-dropdown {
+    display: flex;
+}
+
+.ulHeader {
+    color: var(--color-primary);
+    /* Forces Red Title */
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    display: block;
+    pointer-events: none;
+    margin: 0;
+    font-size: 1rem;
+}
+
 /* --- Responsive/mobile --- */
 @media (max-width: 768px) {
     .navbar {
@@ -624,19 +638,6 @@ a {
         font-size: 1.4rem;
     }
 
-    /* Mobile dropdown arrow for Technical Support */
-    .nav-dropdown-item>a .dropdown-arrow {
-        display: inline-block;
-        margin-left: 5px;
-        font-size: 0.8rem;
-        transition: transform 0.3s;
-    }
-
-    /* Rotate arrow when submenu is open */
-    .nav-dropdown-item>a .dropdown-arrow.rotated {
-        transform: rotate(180deg);
-    }
-
     .nav-dropdown-item>a .product-dropdown.rotated {
         transform: rotate(180deg);
     }
@@ -651,19 +652,24 @@ a {
         box-shadow: none;
     }
 
+    /* PRODUCTS Dropdown (Mobile View) */
     .nav-links.active .product-dropdown {
-        display: none;
         position: static;
+        display: none;
+        /* Controlled by 'open' class in JS */
+        flex-direction: column;
+        /* Stacks Commercial/Residential vertically */
+        min-width: 100%;
+        transform: none;
         background-color: var(--color-secondary);
-        width: 100%;
-        border-radius: 0;
+        padding: 0;
         box-shadow: none;
+        gap: 0;
+        /* Remove the horizontal gap for mobile */
     }
 
-    .nav-links.active .dropdown-menu.open {
-        display: block;
-    }
-
+    /* Show when clicked */
+    .nav-links.active .dropdown-menu.open,
     .nav-links.active .product-dropdown.open {
         display: block;
     }
@@ -675,10 +681,6 @@ a {
     .navbar .navbar-logo-rest {
         font-size: 0.85rem;
     }
-}
-
-/* --- Mobile Responsive (Max-width: 768px) --- */
-@media (max-width: 768px) {
 
     /* Navbar height adjustment */
     .navbar {
@@ -712,42 +714,11 @@ a {
         z-index: 10;
     }
 
-    /* Standard Dropdown (Technical Support) */
-    .nav-links.active .dropdown-menu {
-        position: static;
-        display: none;
-        background-color: var(--color-secondary);
-        width: 100%;
-        box-shadow: none;
-    }
-
-    /* PRODUCTS Dropdown (Mobile View) */
-    .nav-links.active .product-dropdown {
-        position: static;
-        display: none;
-        /* Controlled by 'open' class in JS */
-        flex-direction: column;
-        /* Stacks Commercial/Residential vertically */
-        min-width: 100%;
-        transform: none;
-        background-color: var(--color-secondary);
-        padding: 0;
-        box-shadow: none;
-        gap: 0;
-        /* Remove the horizontal gap for mobile */
-    }
-
-    /* Show when clicked */
-    .nav-links.active .dropdown-menu.open,
-    .nav-links.active .product-dropdown.open {
-        display: block;
-    }
-
     /* Column Headers on Mobile (Commercial/Residential) */
     .ulHeader {
         background-color: rgba(0, 0, 0, 0.1);
         /* Slight darker red for grouping */
-        color: white !important;
+        color: white;
         padding: 10px 20px !important;
         text-align: left;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
@@ -965,22 +936,6 @@ a {
     padding: 1.5rem;
     left: 50%;
     transform: translateX(-50%);
-}
-
-.nav-dropdown-item:hover .product-dropdown {
-    display: flex;
-}
-
-.ulHeader {
-    color: var(--color-primary) !important;
-    /* Forces Red Title */
-    font-weight: 700 !important;
-    text-transform: uppercase;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-    display: block;
-    pointer-events: none;
-    margin: 0;
-    font-size: 1rem;
 }
 
 .product-dropdown li ul {
