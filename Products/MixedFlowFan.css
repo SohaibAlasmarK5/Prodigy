@@ -10,7 +10,7 @@
 }
 
 .product-card {
-    flex: 0 1 300px;
+    flex: 0 1 500px;
     /* Each card ~300px wide */
     display: flex;
     flex-direction: column;
@@ -39,8 +39,7 @@
     font-size: 1.1rem;
 }
 
-.product-description,
-.data-download-btn {
+.product-description {
     opacity: 0;
     max-height: 0;
     overflow: hidden;
@@ -54,21 +53,6 @@
     color: #333;
 }
 
-.data-download-btn {
-    margin-top: 10px;
-    padding: 10px 15px;
-    background-color: #C20000;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 0.95rem;
-}
-
-.data-download-btn:hover {
-    background-color: #2B2D42;
-}
-
 /* Hover effect */
 .product-card:hover {
     transform: scale(1.05);
@@ -78,9 +62,104 @@
     transform: scale(1.05);
 }
 
-.product-card:hover .product-description,
-.product-card:hover .data-download-btn {
+.product-card:hover .product-description {
     opacity: 1;
     max-height: 500px;
     /* enough to show full content */
+}
+
+/* Add this to your existing CSS */
+.description-text {
+    margin-bottom: 12px;
+    line-height: 1.4;
+    display: block;
+    /* Ensure it stays above the table */
+}
+
+.tech-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+}
+
+/* Ensure the container can expand enough to show both text and table */
+.product-card:hover .product-description,
+.product-card.active-hover .product-description {
+    opacity: 1;
+    max-height: 800px;
+    /* Increased height to fit both */
+    padding-bottom: 10px;
+}
+
+.tech-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-size: 0.8rem;
+    /* Smaller font for technical specs */
+    background: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.tech-table th {
+    background-color: #2B2D42;
+    /* Dark professional color */
+    color: white;
+    padding: 6px;
+    font-weight: 600;
+}
+
+.tech-table td {
+    padding: 6px;
+    border-bottom: 1px solid #eee;
+    color: #444;
+}
+
+.tech-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Optional: Highlight the red theme on the Speed letters */
+.tech-table td:first-child {
+    font-weight: bold;
+    color: #C20000;
+}
+
+.tech-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-size: 0.8rem;
+    /* Smaller font for technical specs */
+    background: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.tech-table th {
+    background-color: #2B2D42;
+    /* Dark professional color */
+    color: white;
+    padding: 6px;
+    font-weight: 600;
+}
+
+.tech-table td {
+    padding: 6px;
+    border-bottom: 1px solid #eee;
+    color: #444;
+}
+
+.tech-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Optional: Highlight the red theme on the Speed letters */
+.tech-table td:first-child {
+    font-weight: bold;
+    color: #C20000;
 }
