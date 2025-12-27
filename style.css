@@ -777,6 +777,10 @@ a {
     .navbar .logo-container {
         margin-left: 0;
     }
+
+    .navbar-logo-text {
+        display: none !important;
+    }
 }
 
 /* ============================= */

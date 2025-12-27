@@ -27,6 +27,11 @@
                 width: 100%;
                 max-width: 100%;
             }
+
+            .cfmInput {
+                min-width: 100px !important;
+            }
+
         }
     </style>
 </head>
@@ -134,8 +139,8 @@
 
                     <div class="input-row">
                         <label data-en="Airflow (CFM)" data-ar="التدفق (CFM)">Airflow (CFM)</label>
-                        <input type="number" id="cfmInput" placeholder="Enter CFM" data-en-placeholder="Enter CFM"
-                            data-ar-placeholder="أدخل CFM">
+                        <input type="number" class="cfmInput" id="cfmInput" placeholder="Enter CFM"
+                            data-en-placeholder="Enter CFM" data-ar-placeholder="أدخل CFM">
                     </div>
 
                     <div class="result" id="output" data-en="Enter CFM to see fan performance"
