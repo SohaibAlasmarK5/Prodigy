@@ -163,3 +163,9 @@
     font-weight: bold;
     color: #C20000;
 }
+
+.product-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
