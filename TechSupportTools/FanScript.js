@@ -200,14 +200,19 @@ function updateResult() {
 
         const first = validFans[0];
         const second = validFans[1];
-
+        const formattedName =
+            first.fan.name.slice(0, -1) +
+            first.fan.name.slice(-1).toLowerCase();
+        const secondFormattedName =
+            second.fan.name.slice(0, -1) +
+            second.fan.name.slice(-1).toLowerCase();
         let resultHTML =
-            `<strong>${TRANSLATIONS[lang].RESULT_FAN}</strong> <b>${first.fan.name}</b><br>` +
+            `<strong>${TRANSLATIONS[lang].RESULT_FAN}</strong> <a style="color:red" href='../Products/MixedFlowFansDesciption/${formattedName}.html'>${first.fan.name}</a><br>` +
             `Airflow = ${m3h.toFixed(0)} m³/h → Pressure = ${first.pressure.toFixed(0)} Pa`;
 
         if (second) {
             resultHTML +=
-                `<br><br><strong>${TRANSLATIONS[lang].ALTERNATIVE}</strong> <b>${second.fan.name}</b><br>` +
+                `<br><br><strong>${TRANSLATIONS[lang].ALTERNATIVE}</strong> <a style="color:Red" href='../Products/MixedFlowFansDesciption/${secondFormattedName}.html'>${second.fan.name}</a><br>` +
                 `Airflow = ${m3h.toFixed(0)} m³/h → Pressure = ${second.pressure.toFixed(0)} Pa`;
         }
 
