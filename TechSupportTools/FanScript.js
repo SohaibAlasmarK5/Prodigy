@@ -1,6 +1,4 @@
 const CFM_TO_M3H = 1.699;
-let currentLang = 'en';
-
 
 const TRANSLATIONS = {
     en: {
@@ -8,24 +6,30 @@ const TRANSLATIONS = {
         Y_AXIS: "Static Pressure (Pa)",
         WATERMARK: "Fan Performance Curves",
         POINT_LABEL: "Selected Point",
+        ALTERNATIVE: "ALTERNATIVE:",
         RESULT_NO_FAN: (cfm, mode) => `No suitable fan for ${cfm.toFixed(0)} CFM in the ${mode} series.`,
         RESULT_PREFIX: (m3h, pressure) => `Airflow = ${m3h.toFixed(0)} m³/h → Pressure = ${pressure.toFixed(0)} Pa<br>`,
         RESULT_FAN: "Recommended Fan:",
         INITIAL_OUTPUT: "Enter CFM to see fan performance"
     },
     ar: {
-        X_AXIS: "تدفق الهواء (م³/س)",
+        X_AXIS: "تدفق الهواء (م³/ساعة)",
         Y_AXIS: "الضغط الساكن (باسكال)",
         WATERMARK: "منحنيات أداء المروحة",
         POINT_LABEL: "النقطة المحددة",
-        RESULT_NO_FAN: (cfm, mode) => `لا توجد مروحة مناسبة لـ ${cfm.toFixed(0)} CFM في سلسلة ${mode}.`,
-        RESULT_PREFIX: (m3h, pressure) => `التدفق = ${m3h.toFixed(0)} م³/س ← الضغط = ${pressure.toFixed(0)} باسكال<br>`,
+        ALTERNATIVE: "خيار بديل:",
+        RESULT_NO_FAN: (cfm, mode) =>
+            `لا توجد مروحة مناسبة لـ ${cfm.toFixed(0)} CFM في سلسلة ${mode}.`,
+        RESULT_PREFIX: (m3h, pressure) =>
+            `التدفق = ${m3h.toFixed(0)} م³/ساعة ← الضغط = ${pressure.toFixed(0)} باسكال<br>`,
         RESULT_FAN: "المروحة الموصى بها:",
         INITIAL_OUTPUT: "أدخل CFM لرؤية أداء المروحة"
     }
 };
 
-// --- FAN DATASETS (as provided by user) ---
+
+// ================= FAN DATA =================
+
 const FAN_DATA = {
     HS: [
         { name: "HS-100P", minCFM: 1, maxCFM: 100, minPa: 30, data: [[0, 156], [50, 135], [100, 98], [125, 90], [150, 69], [175, 40], [198, 0]] },
@@ -43,6 +47,9 @@ const FAN_DATA = {
     ]
 };
 
+
+// ================= INTERPOLATION =================
+
 function interpolate(data, x) {
     for (let i = 1; i < data.length; i++) {
         const [x0, y0] = data[i - 1];
@@ -54,25 +61,31 @@ function interpolate(data, x) {
     return null;
 }
 
+
+// ================= CHART =================
+
 const ctx = document.getElementById("fanChart").getContext("2d");
 let chart;
+let currentPointDataset;
 
 const watermarkPlugin = {
     id: 'watermark',
     beforeDraw: (chart) => {
+        const lang = localStorage.getItem('prodigyLang') || 'en';
         const { width, height, ctx } = chart;
         ctx.save();
         ctx.font = "bold 80px Arial";
-        ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+        ctx.fillStyle = "rgba(0,0,0,0.05)";
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
-        // Use translation object for text
-        ctx.fillText(TRANSLATIONS[currentLang].WATERMARK, width / 2, height / 2);
+        ctx.fillText(TRANSLATIONS[lang].WATERMARK, width / 2, height / 2);
         ctx.restore();
     }
 };
 
 function buildChart(mode) {
+
+    const lang = localStorage.getItem('prodigyLang') || 'en';
     const fans = FAN_DATA[mode];
     const colors = ["#c81b1b", "#ff7f0e", "#2ca02c", "#1f77b4", "#9467bd"];
 
@@ -86,14 +99,12 @@ function buildChart(mode) {
         pointRadius: 0
     }));
 
-    const pointDataset = {
-        label: TRANSLATIONS[currentLang].POINT_LABEL,
+    currentPointDataset = {
+        label: TRANSLATIONS[lang].POINT_LABEL,
         data: [],
         pointBackgroundColor: "black",
         pointBorderColor: "black",
-        pointRadius: 5,
-        pointStyle: 'circle',
-        borderWidth: 0,
+        pointRadius: 6,
         type: "scatter",
         showLine: false
     };
@@ -102,50 +113,40 @@ function buildChart(mode) {
 
     chart = new Chart(ctx, {
         type: "line",
-        data: { datasets: [...datasets, pointDataset] },
+        data: { datasets: [...datasets, currentPointDataset] },
         options: {
             responsive: true,
             maintainAspectRatio: false,
             scales: {
                 x: {
                     type: "linear",
-                    title: { display: true, text: TRANSLATIONS[currentLang].X_AXIS }
+                    title: {
+                        display: true,
+                        text: TRANSLATIONS[lang].X_AXIS
+                    }
                 },
                 y: {
-                    title: { display: true, text: TRANSLATIONS[currentLang].Y_AXIS },
-                    min: 0
+                    min: 0,
+                    title: {
+                        display: true,
+                        text: TRANSLATIONS[lang].Y_AXIS
+                    }
                 }
             },
             plugins: {
-                legend: { position: 'bottom' },
-                title: { display: false }
+                legend: { position: 'bottom' }
             }
         },
         plugins: [watermarkPlugin]
     });
-
-    return pointDataset;
 }
 
-let currentPointDataset = buildChart("HS");
 
-
-document.getElementById("cfmInput").addEventListener("input", updateResult);
-
-document.getElementById("modeSelect").addEventListener("change", function () {
-    const mode = this.value;
-
-    document.getElementById("fanImage").src =
-        mode === "HS" ? "../Images/HSFan.png" : "../Images/MSFan.png";
-
-    currentPointDataset = buildChart(mode);
-
-    updateResult();
-});
-
-
+// ================= SELECTION LOGIC =================
 
 function updateResult() {
+
+    const lang = localStorage.getItem('prodigyLang') || 'en';
     const mode = document.getElementById("modeSelect").value;
     const fans = FAN_DATA[mode];
 
@@ -153,7 +154,7 @@ function updateResult() {
     const output = document.getElementById("output");
 
     if (isNaN(cfm) || cfm <= 0) {
-        output.innerHTML = TRANSLATIONS[currentLang].INITIAL_OUTPUT;
+        output.innerHTML = TRANSLATIONS[lang].INITIAL_OUTPUT;
         currentPointDataset.data = [];
         chart.update();
         return;
@@ -161,49 +162,85 @@ function updateResult() {
 
     const m3h = cfm * CFM_TO_M3H;
 
-    let selectedFan = null;
-    let pressure = null;
+    let validFans = [];
 
-    for (const fan of fans) {
-        if (cfm >= fan.minCFM && cfm <= fan.maxCFM) {
+    for (let i = 0; i < fans.length; i++) {
+        const fan = fans[i];
+
+        if (cfm <= fan.maxCFM) {
             const p = interpolate(fan.data, m3h);
+
             if (p !== null && p >= fan.minPa) {
-                selectedFan = fan;
-                pressure = p;
-                break;
+
+                validFans.push({
+                    fan,
+                    pressure: p
+                });
+
+                // push next larger fan automatically
+                if (fans[i + 1]) {
+                    const nextFan = fans[i + 1];
+                    const nextPressure = interpolate(nextFan.data, m3h);
+
+                    if (nextPressure !== null) {
+                        validFans.push({
+                            fan: nextFan,
+                            pressure: nextPressure
+                        });
+                    }
+                }
+
+                break; // stop after first suitable fan
             }
         }
     }
 
-    if (selectedFan) {
-        output.innerHTML =
-            TRANSLATIONS[currentLang].RESULT_PREFIX(m3h, pressure) +
-            `${TRANSLATIONS[currentLang].RESULT_FAN} <b>${selectedFan.name}</b>`;
 
-        currentPointDataset.data = [{ x: m3h, y: pressure }];
+    if (validFans.length > 0) {
+
+        const first = validFans[0];
+        const second = validFans[1];
+
+        let resultHTML =
+            `<strong>${TRANSLATIONS[lang].RESULT_FAN}</strong> <b>${first.fan.name}</b><br>` +
+            `Airflow = ${m3h.toFixed(0)} m³/h → Pressure = ${first.pressure.toFixed(0)} Pa`;
+
+        if (second) {
+            resultHTML +=
+                `<br><br><strong>${TRANSLATIONS[lang].ALTERNATIVE}</strong> <b>${second.fan.name}</b><br>` +
+                `Airflow = ${m3h.toFixed(0)} m³/h → Pressure = ${second.pressure.toFixed(0)} Pa`;
+        }
+
+        output.innerHTML = resultHTML;
+
+        currentPointDataset.data = [{ x: m3h, y: first.pressure }];
+
     } else {
-        output.innerHTML = TRANSLATIONS[currentLang].RESULT_NO_FAN(cfm, mode);
+        output.innerHTML = TRANSLATIONS[lang].RESULT_NO_FAN(cfm, mode);
         currentPointDataset.data = [];
     }
+
 
     chart.update();
 }
 
+
+// ================= INIT =================
+
 document.addEventListener("DOMContentLoaded", function () {
-    currentPointDataset = buildChart(document.getElementById("modeSelect").value);
 
-    function applyPlaceholders(lang) {
-        const input = document.getElementById("cfmInput");
-        if (input) {
-            const placeholderKey = lang === 'ar' ? 'data-ar-placeholder' : 'data-en-placeholder';
-            input.placeholder = input.getAttribute(placeholderKey) || input.placeholder;
-        }
-    }
+    buildChart(document.getElementById("modeSelect").value);
 
-    applyPlaceholders(currentLang);
+    document.getElementById("cfmInput").addEventListener("input", updateResult);
 
-    // --- ADD THIS ---
-    window.addEventListener('resize', () => {
-        if (chart) chart.resize();
+    document.getElementById("modeSelect").addEventListener("change", function () {
+        const mode = this.value;
+
+        document.getElementById("fanImage").src =
+            mode === "HS" ? "../Images/HSFan.png" : "../Images/MSFan.png";
+
+        buildChart(mode);
+        updateResult();
     });
+
 });
