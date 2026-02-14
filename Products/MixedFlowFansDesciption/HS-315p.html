@@ -88,7 +88,7 @@
 
                 <section class="product-overview">
                     <div class="product-image">
-                        <img src="../../Images/HS_200P.jpg" alt="HS-200P Mixed Flow Inline Fan">
+                        <img src="../../Images/HS_250P_315P.jpg" alt="HS-200P Mixed Flow Inline Fan">
                     </div>
                     <div class="product-info">
                         <h1>HS-315P Mixed Flow Inline Fan</h1>
@@ -155,7 +155,9 @@
                         </table>
                     </div>
                 </section>
-
+                <div style="width:100%; margin-top: 5%;">
+                    <canvas id="fanChart"></canvas>
+                </div>
             </div>
         </div>
     </main>
@@ -178,6 +180,11 @@
         <div class="container copyright">&copy; <span id="current-year"></span> Prodigy. All Rights Reserved.</div>
     </footer>
     <script src="../../script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="Charts/FanChart.js"></script>
+    <script>
+        loadFanChart("fanChart", "HS315P");
+    </script>
 </body>
 
 </html>

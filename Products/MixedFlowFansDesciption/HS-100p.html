@@ -143,9 +143,13 @@
                         </table>
                     </div>
                 </section>
-
+                <div style="width:100%;margin-top: 5%;">
+                    <canvas id="fanChart"></canvas>
+                </div>
             </div>
         </div>
+
+
     </main>
 
     <footer class="footer">
@@ -165,6 +169,14 @@
         </div>
         <div class="container copyright">&copy; <span id="current-year"></span> Prodigy. All Rights Reserved.</div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="Charts/FanChart.js"></script>
+    <script>
+        loadFanChart("fanChart", "HS100P");
+    </script>
+
+
     <script src="../../script.js"></script>
 </body>
 
