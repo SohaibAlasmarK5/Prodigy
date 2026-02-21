@@ -4,6 +4,7 @@ const FAN_DATA = {
         maxY: 160,
         stepX: 25,
         stepY: 20,
+        IsMS: false,
         datasets: [
             {
                 label: "HS (High Speed)",
@@ -26,12 +27,47 @@ const FAN_DATA = {
             }
         ]
     },
-
+    HS125P: {
+        maxX: 300,
+        maxY: 160,
+        stepX: 50,
+        stepY: 20,
+        IsMS: false,
+        datasets: [
+            {
+                label: "HS (High Speed)",
+                data: [
+                    { x: 0, y: 160 },   // Starts at max pressure
+                    { x: 50, y: 120 },
+                    { x: 100, y: 105 },
+                    { x: 135, y: 95 },  // Bottom of the dip
+                    { x: 150, y: 100 }, // Peak of the jump
+                    { x: 200, y: 75 },
+                    { x: 250, y: 35 },
+                    { x: 285, y: 0 }    // Ends before 300
+                ],
+                borderColor: '#b24341'
+            },
+            {
+                label: "LS (Low Speed)",
+                data: [
+                    { x: 0, y: 105 },
+                    { x: 25, y: 85 },
+                    { x: 75, y: 78 },
+                    { x: 125, y: 65 },
+                    { x: 175, y: 45 },
+                    { x: 250, y: 0 }    // Ends exactly at the 250 line
+                ],
+                borderColor: '#8ba752'
+            }
+        ]
+    },
     HS150P: {
         maxX: 540,
         maxY: 300,
         stepX: 90,
         stepY: 50,
+        IsMS: false,
         datasets: [
             {
                 label: "HS (High Speed)",
@@ -59,6 +95,7 @@ const FAN_DATA = {
         maxY: 400,
         stepX: 100,
         stepY: 50,
+        IsMS: false,
         datasets: [
             {
                 label: "HS",
@@ -86,6 +123,7 @@ const FAN_DATA = {
         maxY: 500,
         stepX: 200,
         stepY: 50,
+        IsMS: false,
         datasets: [
             {
                 label: "HS (High Speed)",
@@ -113,6 +151,7 @@ const FAN_DATA = {
         maxY: 700,
         stepX: 220,
         stepY: 100,
+        IsMS: false,
         datasets: [
             {
                 label: "HS", borderColor: '#b24341',
@@ -129,7 +168,53 @@ const FAN_DATA = {
                 ]
             }
         ]
-    }
+    },
+    MS100: {
+        maxX: 350,
+        maxY: 350,
+        stepX: 100,
+        stepY: 50,
+        IsMS: true,
+        datasets: [
+            {
+                label: "MS-100M",
+                data: [
+                    { x: 0, y: 310 },
+                    { x: 50, y: 300 },
+                    { x: 100, y: 280 },
+                    { x: 150, y: 245 },
+                    { x: 200, y: 195 },
+                    { x: 250, y: 125 },
+                    { x: 275, y: 75 },
+                    { x: 300, y: 0 }
+                ],
+                borderColor: '#555555'
+            }
+        ]
+    }, MS125: {
+        maxX: 400,
+        maxY: 400,
+        stepX: 100,
+        stepY: 50,
+        IsMS: true,
+        datasets: [
+            {
+                label: "MS-125M",
+                data: [
+                    { x: 0, y: 350 },    // Starts exactly on the 350 line
+                    { x: 50, y: 345 },
+                    { x: 100, y: 330 },
+                    { x: 150, y: 310 },
+                    { x: 200, y: 280 },
+                    { x: 250, y: 240 },
+                    { x: 300, y: 175 },
+                    { x: 350, y: 85 },
+                    { x: 400, y: 0 }     // Ends just before the 400 mark
+                ],
+                borderColor: '#555555'
+            }
+        ]
+    },
 };
 function loadFanChart(canvasId, fanKey) {
 
@@ -147,7 +232,7 @@ function loadFanChart(canvasId, fanKey) {
                     type: "linear",
                     min: 0,
                     max: fan.maxX,
-                    title: { display: true, text: 'Airflow Meter Cubic Per Hour - m³/h', align: 'end', font: { size: 14 } },
+                    title: { display: true, text: fan.IsMS ? 'Air Volume (m³/h)' : 'Airflow Meter Cubic Per Hour - m³/h', align: 'end', font: { size: 14 } },
                     ticks: {
                         stepSize: fan.stepX
                     }
