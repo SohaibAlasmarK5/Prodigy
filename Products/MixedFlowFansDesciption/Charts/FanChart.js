@@ -191,7 +191,8 @@ const FAN_DATA = {
                 borderColor: '#555555'
             }
         ]
-    }, MS125: {
+    },
+    MS125: {
         maxX: 400,
         maxY: 400,
         stepX: 100,
@@ -210,6 +211,101 @@ const FAN_DATA = {
                     { x: 300, y: 175 },
                     { x: 350, y: 85 },
                     { x: 400, y: 0 }     // Ends just before the 400 mark
+                ],
+                borderColor: '#555555'
+            }
+        ]
+    },
+    MS150: {
+        maxX: 800,
+        maxY: 500,
+        stepX: 100,
+        stepY: 100,
+        IsMS: true,
+        datasets: [
+            {
+                label: "MS-150M",
+                data: [
+                    { x: 0, y: 440 },   // Starting point on the Y-axis
+                    { x: 100, y: 430 },
+                    { x: 200, y: 410 },
+                    { x: 300, y: 385 },
+                    { x: 400, y: 350 }, // Intersection with the 350 line
+                    { x: 500, y: 300 }, // Intersection with the 300 line
+                    { x: 600, y: 220 },
+                    { x: 650, y: 140 },
+                    { x: 720, y: 0 }    // Final drop-off at 700 m³/h
+                ],
+                borderColor: '#555555'
+            }
+        ]
+    },
+    MS200: {
+        maxX: 1300,
+        maxY: 800,
+        stepX: 200, // Based on grid labels 0, 400, 800, 1200
+        stepY: 100, // Based on grid labels 100 to 800
+        IsMS: true,
+        datasets: [
+            {
+                label: "MS-200M",
+                data: [
+                    { x: 0, y: 580 },   // Starts just below the 600 line
+                    { x: 200, y: 570 },
+                    { x: 400, y: 550 },
+                    { x: 600, y: 510 },
+                    { x: 800, y: 440 },
+                    { x: 900, y: 380 },
+                    { x: 1000, y: 280 },
+                    { x: 1100, y: 120 },
+                    { x: 1120, y: 0 }    // Ends roughly midway between 1000 and 1200
+                ],
+                borderColor: '#555555'
+            }
+        ]
+    },
+    MS250: {
+        maxX: 1600,
+        maxY: 800,
+        stepX: 400, // Matching the main axis labels: 0, 400, 800, 1200, 1600
+        stepY: 100, // Matching the horizontal grid lines
+        IsMS: true,
+        datasets: [
+            {
+                label: "MS-250M",
+                data: [
+                    { x: 0, y: 660 },    // Starting point between 600 and 700
+                    { x: 200, y: 650 },
+                    { x: 400, y: 630 },
+                    { x: 600, y: 600 },  // Intersection with the 600 Pa line
+                    { x: 800, y: 550 },  // Midway between 500 and 600
+                    { x: 1000, y: 470 },
+                    { x: 1200, y: 340 },
+                    { x: 1300, y: 200 },
+                    { x: 1400, y: 0 }    // Ends on the second grid line after 1200
+                ],
+                borderColor: '#555555'
+            }
+        ]
+    },
+    MS315: {
+        maxX: 2000,
+        maxY: 800,
+        stepX: 400,
+        stepY: 100,
+        IsMS: true,
+        datasets: [
+            {
+                label: "MS-315M",
+                data: [
+                    { x: 0, y: 700 },    // Starts exactly on the 700 line
+                    { x: 400, y: 660 },
+                    { x: 800, y: 600 },  // Crosses 600 line at 800 m³/h
+                    { x: 1200, y: 500 }, // Crosses 500 line at 1200 m³/h
+                    { x: 1400, y: 410 },
+                    { x: 1600, y: 300 }, // Crosses 300 line at 1600 m³/h
+                    { x: 1800, y: 120 },
+                    { x: 1900, y: 0 }    // Ends just before the 2000 mark
                 ],
                 borderColor: '#555555'
             }
